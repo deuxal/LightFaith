@@ -2,17 +2,32 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class movement : MonoBehaviour
+public class ObjectMovement : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    public float normalSpeed = 2f;
+    public float sprintSpeed = 4f;
+
+    private float currentSpeed;
+
+    private void Start()
     {
-        
+        currentSpeed = normalSpeed;
     }
 
-    // Update is called once per frame
-    void Update()
+    private void Update()
     {
-        
+        // Cambiar velocidad al presionar Shift
+        if (Input.GetKey(KeyCode.LeftShift) || Input.GetKey(KeyCode.RightShift))
+        {
+            currentSpeed = sprintSpeed;
+        }
+        else
+        {
+            currentSpeed = normalSpeed;
+        }
+
+        // Movimiento horizontal
+        float horizontalMovement = Input.GetAxis("Horizontal");
+        transform.Translate(Vector3.right * horizontalMovement * currentSpeed * Time.deltaTime);
     }
 }
