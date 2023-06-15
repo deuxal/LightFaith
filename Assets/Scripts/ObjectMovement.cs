@@ -2,6 +2,8 @@ using UnityEngine;
 
 public class ObjectMovement : MonoBehaviour
 {
+    public Collider2D myCollider;
+    public LedgeClimb lc;
     public float normalSpeed = 2f;
     public float sprintSpeed = 4f;
 
@@ -25,12 +27,32 @@ public class ObjectMovement : MonoBehaviour
             currentSpeed = normalSpeed;
         }
 
-        if (isPlayerStopped)
+        if (isPlayerStopped) {
+            currentSpeed = 0;
             return;
+        }
 
+        if(lc != null) { 
+            lc.MoveToPoint(this.transform, () => {TurnOff();}, () => { TurnOn(); });
+        }
+
+    }
+    private void FixedUpdate()
+    {
         // Movimiento horizontal
-        float horizontalMovement = Input.GetAxis("Horizontal");
-        transform.Translate(Vector3.right * horizontalMovement * currentSpeed * Time.deltaTime);
+        float horizontalMovement = Input.GetAxisRaw("Horizontal");
+        transform.position += (Vector3.right * horizontalMovement * currentSpeed * Time.fixedDeltaTime);
+        // transform.Translate
+    }
+
+    public void TurnOff() 
+    {
+        myCollider.enabled = false;
+    }
+
+    public void TurnOn()
+    {
+        myCollider.enabled = true;
     }
 
     public void StopPlayer()

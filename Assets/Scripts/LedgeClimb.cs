@@ -1,53 +1,73 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EdgeClimb : MonoBehaviour
+public class LedgeClimb: MonoBehaviour
 {
-    public float climbSpeed = 5f;
-    public float edgeRaycastDistance = 1f;
-    public LayerMask edgeLayer;
-    public float edgeClimbOffset = 1f;
+    public Transform point1;
+    public Transform point2;
+    public float timeToReachPoint1 = 2f;
+    public float timeToReachPoint2 = 2f;
 
-    private bool isClimbing = false;
-    private Vector3 climbDestination;
+    private bool isMoving = false;
+    private Transform player;
+    private Action endAction;
 
-    private void Update()
+    public void MoveToPoint(Transform player, Action startAction, Action endAction)
     {
-        // Check if the player is currently climbing
-        if (isClimbing)
+        this.endAction = endAction;
+        this.player = player;
+        if (!isMoving && Input.GetKey(KeyCode.LeftControl))
         {
-            // Move towards the climb destination
-            float step = climbSpeed * Time.deltaTime;
-            transform.position = Vector3.MoveTowards(transform.position, climbDestination, step);
+            startAction();
+            StartCoroutine(MoveToPoint(point1.position, timeToReachPoint1, MoveToPoint(point2.position, timeToReachPoint2, EndAction())));
+        }
+    }
 
-            // Check if the player has reached the climb destination
-            if (transform.position == climbDestination)
-            {
-                isClimbing = false;
-            }
+    IEnumerator MoveToPoint(Vector3 targetPosition, float timeToReachTarget, IEnumerator next)
+    {
+        isMoving = true;
+        Vector3 startPosition = player.position;
+        float elapsedTime = 0f;
 
-            return;
+        while (elapsedTime < timeToReachTarget)
+        {
+            player.position = Vector3.Lerp(startPosition, targetPosition, (elapsedTime / timeToReachTarget));
+            elapsedTime += Time.deltaTime;
+            yield return null;
         }
 
-        // Check for edge climb input (e.g., pressing the "CTRL" key)
-        if (Input.GetKeyDown(KeyCode.LeftControl) || Input.GetKeyDown(KeyCode.RightControl))
+        player.position = targetPosition;
+        isMoving = false;
+        if(next != null) { 
+            yield return next;
+        }
+
+    }
+
+    IEnumerator EndAction()
+    {
+        yield return 0;
+        endAction();
+
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if(collision.transform.tag == "Player")
         {
-            // Perform a raycast forward and downward to detect edges
-            RaycastHit2D hitForward = Physics2D.Raycast(transform.position, Vector2.right * transform.localScale.x, edgeRaycastDistance, edgeLayer);
-            RaycastHit2D hitDownward = Physics2D.Raycast(transform.position, Vector2.down, edgeRaycastDistance, edgeLayer);
+            collision.transform.GetComponent<ObjectMovement>().lc = this;
+        }
+    }
 
-            // If both raycasts hit edges, start climbing
-            if (hitForward.collider != null && hitDownward.collider != null)
-            {
-                isClimbing = true;
-
-                // Calculate the climb destination based on the hit points of the raycasts
-                float climbX = hitForward.point.x;
-                float climbY = hitDownward.point.y + edgeClimbOffset;
-                climbDestination = new Vector3(climbX, climbY, transform.position.z);
-            }
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if (collision.transform.tag == "Player")
+        {
+            collision.transform.GetComponent<ObjectMovement>().lc = null;
         }
     }
 }
+
 
