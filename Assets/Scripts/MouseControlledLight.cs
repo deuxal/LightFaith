@@ -12,6 +12,13 @@ public class MouseControlledLight : MonoBehaviour
     private bool isLightOn = true;
     private bool isProjectileMode = false;
 
+    private ObjectMovement playerMovementController; // Reference to the ObjectMovement script
+
+    private void Start()
+    {
+        playerMovementController = FindObjectOfType<ObjectMovement>(); // Find the ObjectMovement script in the scene
+    }
+
     private void Update()
     {
         // Toggle light on/off when the specified key is pressed
@@ -26,11 +33,13 @@ public class MouseControlledLight : MonoBehaviour
         {
             isProjectileMode = true;
             globalLight2D.enabled = false;
+            playerMovementController.StopPlayer(); // Stop the player's movement
         }
         else
         {
             isProjectileMode = false;
             globalLight2D.enabled = isLightOn;
+            playerMovementController.ResumePlayer(); // Resume the player's movement
         }
 
         // Get the mouse position in screen space
@@ -56,5 +65,10 @@ public class MouseControlledLight : MonoBehaviour
         }
     }
 }
+
+
+
+
+
 
 

@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class ObjectMovement : MonoBehaviour
@@ -8,6 +6,7 @@ public class ObjectMovement : MonoBehaviour
     public float sprintSpeed = 4f;
 
     private float currentSpeed;
+    private bool isPlayerStopped = false;
 
     private void Start()
     {
@@ -26,8 +25,21 @@ public class ObjectMovement : MonoBehaviour
             currentSpeed = normalSpeed;
         }
 
+        if (isPlayerStopped)
+            return;
+
         // Movimiento horizontal
         float horizontalMovement = Input.GetAxis("Horizontal");
         transform.Translate(Vector3.right * horizontalMovement * currentSpeed * Time.deltaTime);
+    }
+
+    public void StopPlayer()
+    {
+        isPlayerStopped = true;
+    }
+
+    public void ResumePlayer()
+    {
+        isPlayerStopped = false;
     }
 }
