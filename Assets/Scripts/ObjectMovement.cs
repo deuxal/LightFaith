@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.UI;
 
 public class ObjectMovement : MonoBehaviour
 {
@@ -17,16 +18,26 @@ public class ObjectMovement : MonoBehaviour
     private bool isCooldown;
     private SpriteRenderer spriteRenderer;
 
+    /// <summary>
+    [SerializeField] private float sprintTime = 10;
+    private float currentSprintTime = 0;
+    [SerializeField] private float sprintRecoveryStop = 1;
+    [SerializeField] private float sprintRecoveryWalk = 1;
+    [SerializeField] private Image sprintSlider;
+
+    /// </summary>
     private void Start()
     {
+        currentSprintTime = sprintTime;
         currentSpeed = normalSpeed;
         sprintTimer = sprintDuration;
         spriteRenderer = GetComponent<SpriteRenderer>();
+        Slider();
     }
 
     private void Update()
     {
-        if (!isCooldown && (Input.GetKey(KeyCode.LeftShift) || Input.GetKey(KeyCode.RightShift)))
+        if (!isCooldown && (Input.GetKey(KeyCode.LeftShift) || Input.GetKey(KeyCode.RightShift)) && currentSprintTime > 0)
         {
             if (!isSprinting)
             {
@@ -36,6 +47,8 @@ public class ObjectMovement : MonoBehaviour
 
             currentSpeed = sprintSpeed;
             sprintTimer -= Time.deltaTime;
+            currentSprintTime -= Time.deltaTime;
+
             if (sprintTimer <= 0f)
             {
                 currentSpeed = normalSpeed;
@@ -61,7 +74,10 @@ public class ObjectMovement : MonoBehaviour
 
         if (isPlayerStopped)
         {
+            currentSprintTime += Time.deltaTime * sprintRecoveryStop;
+            currentSprintTime = currentSprintTime > sprintTime ? sprintTime : currentSprintTime;
             currentSpeed = 0;
+            Slider();
             return;
         }
 
@@ -75,11 +91,26 @@ public class ObjectMovement : MonoBehaviour
         if (horizontalMovement < 0f)
         {
             spriteRenderer.transform.rotation = Quaternion.Euler(0f, 180f, 0f); // Rotate 180 degrees in Y-axis
+            currentSprintTime += Time.deltaTime * sprintRecoveryWalk;
+            currentSprintTime = currentSprintTime > sprintTime ? sprintTime : currentSprintTime;
         }
         else if (horizontalMovement > 0f)
         {
             spriteRenderer.transform.rotation = Quaternion.Euler(0f, 0f, 0f); // Rotate 0 degrees in Y-axis
+            currentSprintTime += Time.deltaTime * sprintRecoveryWalk;
+            currentSprintTime = currentSprintTime > sprintTime ? sprintTime : currentSprintTime;
         }
+        else
+        {
+            currentSprintTime += Time.deltaTime * sprintRecoveryStop;
+            currentSprintTime = currentSprintTime > sprintTime ? sprintTime : currentSprintTime;
+        }
+        Slider();
+    }
+
+    private void Slider()
+    {
+        sprintSlider.fillAmount = currentSprintTime / sprintTime;
     }
 
     private void FixedUpdate()
