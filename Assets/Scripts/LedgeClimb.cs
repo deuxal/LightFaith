@@ -12,14 +12,15 @@ public class LedgeClimb: MonoBehaviour
 
     private bool isMoving = false;
     private Transform player;
-    private Action endAction;
+    private System.Action endAction;
 
-    public void MoveToPoint(Transform player, Action startAction, Action endAction)
+    public void MoveToPoint(Transform player, System.Action startAction, System.Action endAction)
     {
         this.endAction = endAction;
         this.player = player;
         if (!isMoving && Input.GetKey(KeyCode.LeftControl))
         {
+            
             startAction();
             StartCoroutine(MoveToPoint(point1.position, timeToReachPoint1, MoveToPoint(point2.position, timeToReachPoint2, EndAction())));
         }

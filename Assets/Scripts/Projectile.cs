@@ -18,7 +18,9 @@ public class Projectile : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Space))
         {
             isShootingEnabled = true;
-            Cursor.SetCursor(projectileModeCursorSprite.texture, Vector2.zero, CursorMode.Auto);
+            Vector2 hotspot = new Vector2(projectileModeCursorSprite.texture.width / 2, projectileModeCursorSprite.texture.height / 2);
+            Cursor.SetCursor(projectileModeCursorSprite.texture, hotspot, CursorMode.Auto);
+            // Cursor.SetCursor(projectileModeCursorSprite.texture, new Vector2(0.5f, 0.5f), CursorMode.Auto);
         }
         else if (Input.GetKeyUp(KeyCode.Space))
         {

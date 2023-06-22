@@ -260,8 +260,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 579, y: 452.411}
-  m_SizeDelta: {x: -1212.828, y: -949.201}
+  m_AnchoredPosition: {x: 579, y: 495.118}
+  m_SizeDelta: {x: -1212.828, y: -1034.615}
   m_Pivot: {x: 0.4999999, y: 0.5000001}
 --- !u!114 &281002691
 MonoBehaviour:
@@ -1430,6 +1430,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 5077270539788591370, guid: 4511983af615d914c89a4d10b06bcc41, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0.36
+      objectReference: {fileID: 0}
+    - target: {fileID: 5077270539788591370, guid: 4511983af615d914c89a4d10b06bcc41, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.11
+      objectReference: {fileID: 0}
     - target: {fileID: 5661511895738160402, guid: 4511983af615d914c89a4d10b06bcc41, type: 3}
       propertyPath: m_RootOrder
       value: 2
@@ -1475,12 +1483,32 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6276795764546055482, guid: 4511983af615d914c89a4d10b06bcc41, type: 3}
+      propertyPath: sprintTime
+      value: 2.11
+      objectReference: {fileID: 0}
+    - target: {fileID: 6276795764546055482, guid: 4511983af615d914c89a4d10b06bcc41, type: 3}
+      propertyPath: isSprinting
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6276795764546055482, guid: 4511983af615d914c89a4d10b06bcc41, type: 3}
+      propertyPath: sprintSlider
+      value: 
+      objectReference: {fileID: 281002691}
+    - target: {fileID: 6276795764546055482, guid: 4511983af615d914c89a4d10b06bcc41, type: 3}
+      propertyPath: sprintCooldown
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6276795764546055482, guid: 4511983af615d914c89a4d10b06bcc41, type: 3}
       propertyPath: sprintRecoveryStop
-      value: 0.5
+      value: 0.38
       objectReference: {fileID: 0}
     - target: {fileID: 6276795764546055482, guid: 4511983af615d914c89a4d10b06bcc41, type: 3}
       propertyPath: sprintRecoveryWalk
-      value: 0.01
+      value: 0.16
+      objectReference: {fileID: 0}
+    - target: {fileID: 8239498911537415847, guid: 4511983af615d914c89a4d10b06bcc41, type: 3}
+      propertyPath: m_Name
+      value: AimPoint
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
