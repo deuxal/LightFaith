@@ -15,11 +15,13 @@ public class ObjectMovement : MonoBehaviour
     public bool isSprinting;
     private float sprintCooldownTimer;
     private bool isCooldown;
+    private SpriteRenderer spriteRenderer;
 
     private void Start()
     {
         currentSpeed = normalSpeed;
         sprintTimer = sprintDuration;
+        spriteRenderer = GetComponent<SpriteRenderer>();
     }
 
     private void Update()
@@ -67,6 +69,17 @@ public class ObjectMovement : MonoBehaviour
         {
             lc.MoveToPoint(this.transform, () => { TurnOff(); }, () => { TurnOn(); });
         }
+
+        // Rotate the sprite based on the input keys
+        float horizontalMovement = Input.GetAxisRaw("Horizontal");
+        if (horizontalMovement < 0f)
+        {
+            spriteRenderer.transform.rotation = Quaternion.Euler(0f, 180f, 0f); // Rotate 180 degrees in Y-axis
+        }
+        else if (horizontalMovement > 0f)
+        {
+            spriteRenderer.transform.rotation = Quaternion.Euler(0f, 0f, 0f); // Rotate 0 degrees in Y-axis
+        }
     }
 
     private void FixedUpdate()
@@ -95,3 +108,4 @@ public class ObjectMovement : MonoBehaviour
         isPlayerStopped = false;
     }
 }
+
