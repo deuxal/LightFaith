@@ -6,46 +6,76 @@ public class ObjectMovement : MonoBehaviour
     public LedgeClimb lc;
     public float normalSpeed = 2f;
     public float sprintSpeed = 4f;
+    public float sprintDuration = 5f;
+    public float sprintCooldown = 2f;
 
     private float currentSpeed;
     private bool isPlayerStopped = false;
+    private float sprintTimer;
+    public bool isSprinting;
+    private float sprintCooldownTimer;
+    private bool isCooldown;
 
     private void Start()
     {
         currentSpeed = normalSpeed;
+        sprintTimer = sprintDuration;
     }
 
     private void Update()
     {
-        // Cambiar velocidad al presionar Shift
-        if (Input.GetKey(KeyCode.LeftShift) || Input.GetKey(KeyCode.RightShift))
+        if (!isCooldown && (Input.GetKey(KeyCode.LeftShift) || Input.GetKey(KeyCode.RightShift)))
         {
+            if (!isSprinting)
+            {
+                isSprinting = true;
+                sprintTimer = sprintDuration;
+            }
+
             currentSpeed = sprintSpeed;
+            sprintTimer -= Time.deltaTime;
+            if (sprintTimer <= 0f)
+            {
+                currentSpeed = normalSpeed;
+                sprintCooldownTimer = sprintCooldown;
+                isCooldown = true;
+                isSprinting = false;
+            }
         }
         else
         {
             currentSpeed = normalSpeed;
         }
 
-        if (isPlayerStopped) {
+        if (isCooldown)
+        {
+            sprintCooldownTimer -= Time.deltaTime;
+            if (sprintCooldownTimer <= 0f)
+            {
+                isCooldown = false;
+                sprintCooldownTimer = sprintCooldown;
+            }
+        }
+
+        if (isPlayerStopped)
+        {
             currentSpeed = 0;
             return;
         }
 
-        if(lc != null) { 
-            lc.MoveToPoint(this.transform, () => {TurnOff();}, () => { TurnOn(); });
+        if (lc != null)
+        {
+            lc.MoveToPoint(this.transform, () => { TurnOff(); }, () => { TurnOn(); });
         }
-
     }
+
     private void FixedUpdate()
     {
-        // Movimiento horizontal
         float horizontalMovement = Input.GetAxisRaw("Horizontal");
         transform.position += (Vector3.right * horizontalMovement * currentSpeed * Time.fixedDeltaTime);
-        // transform.Translate
     }
 
-    public void TurnOff() 
+    public void TurnOff()
     {
         myCollider.enabled = false;
     }

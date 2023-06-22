@@ -17,6 +17,10 @@ public class MouseControlledLight : MonoBehaviour
     private void Start()
     {
         playerMovementController = FindObjectOfType<ObjectMovement>(); // Find the ObjectMovement script in the scene
+
+        // Deactivate the flashlight at the start of the game
+        globalLight2D.enabled = false;
+        isLightOn = false;
     }
 
     private void Update()
