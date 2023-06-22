@@ -3,6 +3,9 @@ using UnityEngine.UI;
 
 public class ObjectMovement : MonoBehaviour
 {
+    public float MAXHP;
+    public float HP;
+
     public Collider2D myCollider;
     public LedgeClimb lc;
     public float normalSpeed = 2f;
@@ -137,6 +140,12 @@ public class ObjectMovement : MonoBehaviour
     public void ResumePlayer()
     {
         isPlayerStopped = false;
+    }
+
+    public void Heal(float healA)
+    {
+        HP += healA;
+        HP = HP > MAXHP ? MAXHP : HP;
     }
 }
 
