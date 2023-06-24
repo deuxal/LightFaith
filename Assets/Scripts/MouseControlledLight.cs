@@ -13,6 +13,7 @@ public class MouseControlledLight : MonoBehaviour
     private bool isLightOn = true;
     private bool isProjectileMode = false;
     private float batteryTimer;
+    private float originalBatteryDuration;
 
     private ObjectMovement playerMovementController; // Reference to the ObjectMovement script
 
@@ -24,6 +25,7 @@ public class MouseControlledLight : MonoBehaviour
         globalLight2D.enabled = false;
         isLightOn = false;
 
+        originalBatteryDuration = batteryDuration; // Store the original battery duration
         batteryTimer = batteryDuration; // Set the initial battery timer
     }
 
@@ -85,12 +87,12 @@ public class MouseControlledLight : MonoBehaviour
             }
         }
     }
+
+    public void ResetBatteryDuration()
+    {
+        batteryDuration = originalBatteryDuration;
+        batteryTimer = batteryDuration;
+    }
 }
-
-
-
-
-
-
 
 

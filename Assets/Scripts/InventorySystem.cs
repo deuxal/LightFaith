@@ -15,11 +15,11 @@ public class InventorySystem : MonoBehaviour
     public float healAmount = 1;
     [Header("Other Scripts")]
     public ObjectMovement om;
+    public MouseControlledLight mouseControlledLight;
 
-    // Start is called before the first frame update
-    void Start()
+    private void Start()
     {
-        
+        mouseControlledLight = FindObjectOfType<MouseControlledLight>(); // Find the MouseControlledLight script in the scene
     }
 
     // Update is called once per frame
@@ -58,6 +58,11 @@ public class InventorySystem : MonoBehaviour
             HPUI.SetActive(false);
             om.Heal(healAmount);
         }
-        
+        else if (item == 1)
+        {
+            BATTERYUI.SetActive(false);
+            mouseControlledLight.ResetBatteryDuration();
+        }
+
     }
 }

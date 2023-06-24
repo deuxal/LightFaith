@@ -334,7 +334,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &455146810
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1050,6 +1050,7 @@ MonoBehaviour:
   BATTERYUI: {fileID: 455146809}
   healAmount: 1
   om: {fileID: 936208680}
+  mouseControlledLight: {fileID: 0}
 --- !u!1001 &820207382
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1385,7 +1386,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &919841198
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2414,6 +2415,10 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 3892729185550425491, guid: fd11be24ef344cb4aa70324a835db060, type: 3}
+      propertyPath: batteryDuration
+      value: 180
+      objectReference: {fileID: 0}
     - target: {fileID: 4508449851760758074, guid: fd11be24ef344cb4aa70324a835db060, type: 3}
       propertyPath: m_RootOrder
       value: 0
@@ -2536,6 +2541,10 @@ PrefabInstance:
       propertyPath: globalLight2D
       value: 
       objectReference: {fileID: 619394801}
+    - target: {fileID: 278459124100973784, guid: 4511983af615d914c89a4d10b06bcc41, type: 3}
+      propertyPath: batteryDuration
+      value: 180
+      objectReference: {fileID: 0}
     - target: {fileID: 2168874496091758715, guid: 4511983af615d914c89a4d10b06bcc41, type: 3}
       propertyPath: m_Name
       value: Player
