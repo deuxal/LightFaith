@@ -52,8 +52,8 @@ public class MouseControlledLight : MonoBehaviour
             playerMovementController.ResumePlayer(); // Resume the player's movement
         }
 
-        // Decrease the battery timer if the light is on
-        if (isLightOn)
+        // Decrease the battery timer if the light is on and not in ProjectileMode
+        if (isLightOn && !isProjectileMode)
         {
             batteryTimer -= Time.deltaTime;
 
@@ -87,6 +87,7 @@ public class MouseControlledLight : MonoBehaviour
             }
         }
     }
+
 
     public void ResetBatteryDuration()
     {
