@@ -142,10 +142,6 @@ public class ObjectMovement : MonoBehaviour
         isPlayerStopped = false;
     }
 
-    public void Heal(float healA)
-    {
-        HP += healA;
-        HP = HP > MAXHP ? MAXHP : HP;
-    }
+
 }
 

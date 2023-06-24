@@ -12,9 +12,7 @@ public class InventorySystem : MonoBehaviour
     public GameObject KEY2UI;
     public GameObject BATTERYUI;
 
-    public float healAmount = 1;
-    [Header("Other Scripts")]
-    public ObjectMovement om;
+   
     public MouseControlledLight mouseControlledLight;
 
     private void Start()
@@ -55,8 +53,7 @@ public class InventorySystem : MonoBehaviour
     {
         if (item == 0)
         {
-            HPUI.SetActive(false);
-            om.Heal(healAmount);
+           
         }
         else if (item == 1)
         {
