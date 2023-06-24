@@ -8,9 +8,11 @@ public class MouseControlledLight : MonoBehaviour
     public Light2D globalLight2D;
     public KeyCode toggleKey = KeyCode.E;
     public KeyCode modeChangeKey = KeyCode.Space;
+    public float batteryDuration = 10f; // Duration of the battery in seconds
 
     private bool isLightOn = true;
     private bool isProjectileMode = false;
+    private float batteryTimer;
 
     private ObjectMovement playerMovementController; // Reference to the ObjectMovement script
 
@@ -21,6 +23,8 @@ public class MouseControlledLight : MonoBehaviour
         // Deactivate the flashlight at the start of the game
         globalLight2D.enabled = false;
         isLightOn = false;
+
+        batteryTimer = batteryDuration; // Set the initial battery timer
     }
 
     private void Update()
@@ -46,6 +50,19 @@ public class MouseControlledLight : MonoBehaviour
             playerMovementController.ResumePlayer(); // Resume the player's movement
         }
 
+        // Decrease the battery timer if the light is on
+        if (isLightOn)
+        {
+            batteryTimer -= Time.deltaTime;
+
+            if (batteryTimer <= 0f)
+            {
+                batteryTimer = 0f;
+                isLightOn = false;
+                globalLight2D.enabled = false;
+            }
+        }
+
         // Get the mouse position in screen space
         Vector3 mouseScreenPosition = Input.mousePosition;
 
@@ -69,6 +86,7 @@ public class MouseControlledLight : MonoBehaviour
         }
     }
 }
+
 
 
 
