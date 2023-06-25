@@ -13,7 +13,7 @@ public class MouseControlledLight : MonoBehaviour
     private bool isLightOn = true;
     private bool isProjectileMode = false;
     private float batteryTimer;
-    private float originalBatteryDuration;
+    public float originalBatteryDuration;
 
     private ObjectMovement playerMovementController; // Reference to the ObjectMovement script
 
