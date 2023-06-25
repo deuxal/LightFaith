@@ -94,6 +94,11 @@ public class MouseControlledLight : MonoBehaviour
         batteryDuration = originalBatteryDuration;
         batteryTimer = batteryDuration;
     }
+    public float BatteryPercentage()
+    {
+        return batteryTimer / batteryDuration;
+    }
+
 }
 
 
