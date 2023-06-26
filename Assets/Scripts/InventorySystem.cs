@@ -12,7 +12,7 @@ public class InventorySystem : MonoBehaviour
     public GameObject KEY2UI;
     public GameObject BATTERYUI;
 
-   
+
     public MouseControlledLight mouseControlledLight;
 
     private void Start()
@@ -31,7 +31,7 @@ public class InventorySystem : MonoBehaviour
 
     public void GetItem(int item)
     {
-        if(item == 0)
+        if (item == 0)
         {
             HPUI.SetActive(true);
         }
@@ -53,13 +53,21 @@ public class InventorySystem : MonoBehaviour
     {
         if (item == 0)
         {
-           
+            // Handle using HP item
         }
         else if (item == 1)
         {
             BATTERYUI.SetActive(false);
             mouseControlledLight.ResetBatteryDuration();
         }
-
+        else if (item == 2)
+        {
+            // Handle using KEY1 item
+        }
+        else if (item == 3)
+        {
+            // Handle using KEY2 item
+        }
     }
 }
+
