@@ -12,6 +12,7 @@ public class ObjectMovement : MonoBehaviour
     public float sprintSpeed = 4f;
     public float sprintDuration = 5f;
     public float sprintCooldown = 2f;
+    public Animator animator; 
 
     private float currentSpeed;
     private bool isPlayerStopped = false;
@@ -96,17 +97,23 @@ public class ObjectMovement : MonoBehaviour
             spriteRenderer.transform.rotation = Quaternion.Euler(0f, 180f, 0f); // Rotate 180 degrees in Y-axis
             currentSprintTime += Time.deltaTime * sprintRecoveryWalk;
             currentSprintTime = currentSprintTime > sprintTime ? sprintTime : currentSprintTime;
+            // Set the walking animation parameter to true
+            animator.SetBool("IsWalking", true);
         }
         else if (horizontalMovement > 0f)
         {
             spriteRenderer.transform.rotation = Quaternion.Euler(0f, 0f, 0f); // Rotate 0 degrees in Y-axis
             currentSprintTime += Time.deltaTime * sprintRecoveryWalk;
             currentSprintTime = currentSprintTime > sprintTime ? sprintTime : currentSprintTime;
+            // Set the walking animation parameter to true
+            animator.SetBool("IsWalking", true);
         }
         else
         {
             currentSprintTime += Time.deltaTime * sprintRecoveryStop;
             currentSprintTime = currentSprintTime > sprintTime ? sprintTime : currentSprintTime;
+            // Set the walking animation parameter to false
+            animator.SetBool("IsWalking", false);
         }
         Slider();
     }
