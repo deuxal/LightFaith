@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class PlayerSpriteController : MonoBehaviour
 {
-    public Transform crosshair;
     public Sprite[] sprites; // Array of sprite images for different directions
+    public Transform crosshair; // Reference to the crosshair object
 
     private SpriteRenderer spriteRenderer;
 
@@ -48,11 +48,11 @@ public class PlayerSpriteController : MonoBehaviour
         }
         else if (angle >= -135f && angle < -45f)
         {
-            return 2; // Sprite index for down direction
+            return 3; // Sprite index for down direction
         }
         else
         {
-            return 3; // Sprite index for left direction
+            return 2; // Sprite index for left direction
         }
     }
 }

@@ -9,6 +9,7 @@ public class Projectile : MonoBehaviour
     public float projectileForce = 10f;
     public float shootCooldown = 0.5f;
     public Sprite projectileModeCursorSprite;
+    public GameObject projectileModeCursor;
 
     private bool isShootingEnabled = false;
     private bool isCooldownActive = false;
