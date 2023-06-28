@@ -13,6 +13,14 @@ public class Projectile : MonoBehaviour
 
     private bool isShootingEnabled = false;
     private bool isCooldownActive = false;
+    public int ammoLimit = -1; // -1 indicates unlimited ammo
+    public int ammoCount = 0;
+
+    public void AddAmmoLimit(int limit)
+    {
+        ammoLimit = limit;
+        ammoCount = limit;
+    }
 
     private void Update()
     {
@@ -21,7 +29,6 @@ public class Projectile : MonoBehaviour
             isShootingEnabled = true;
             Vector2 hotspot = new Vector2(projectileModeCursorSprite.texture.width / 2, projectileModeCursorSprite.texture.height / 2);
             Cursor.SetCursor(projectileModeCursorSprite.texture, hotspot, CursorMode.Auto);
-            // Cursor.SetCursor(projectileModeCursorSprite.texture, new Vector2(0.5f, 0.5f), CursorMode.Auto);
         }
         else if (Input.GetKeyUp(KeyCode.Space))
         {
@@ -29,10 +36,14 @@ public class Projectile : MonoBehaviour
             Cursor.SetCursor(null, Vector2.zero, CursorMode.Auto);
         }
 
-        if (isShootingEnabled && Input.GetMouseButtonDown(0) && !isCooldownActive)
+        if (isShootingEnabled && Input.GetMouseButtonDown(0) && !isCooldownActive && (ammoLimit == -1 || ammoCount > 0))
         {
             ShootProjectile();
             StartCoroutine(StartCooldown());
+            if (ammoLimit != -1)
+            {
+                ammoCount--;
+            }
         }
     }
 
@@ -84,3 +95,4 @@ public class Projectile : MonoBehaviour
         Camera.main.transform.position = originalCameraPosition;
     }
 }
+
