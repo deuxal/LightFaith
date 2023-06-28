@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Projectile : MonoBehaviour
 {
@@ -10,6 +11,7 @@ public class Projectile : MonoBehaviour
     public float shootCooldown = 0.5f;
     public Sprite projectileModeCursorSprite;
     public GameObject projectileModeCursor;
+    public Text bulletCountText; // Reference to the UI text component
 
     private bool isShootingEnabled = false;
     private bool isCooldownActive = false;
@@ -20,6 +22,12 @@ public class Projectile : MonoBehaviour
     {
         ammoLimit = limit;
         ammoCount = limit;
+        UpdateBulletCountUI();
+    }
+
+    private void Start()
+    {
+        AddBulletCountChangeListener(UpdateBulletCountUI); // Subscribe to the bullet count change event
     }
 
     private void Update()
@@ -43,6 +51,7 @@ public class Projectile : MonoBehaviour
             if (ammoLimit != -1)
             {
                 ammoCount--;
+                UpdateBulletCountUI(); // Update bullet count UI after decrementing ammo count
             }
         }
     }
@@ -94,5 +103,31 @@ public class Projectile : MonoBehaviour
 
         Camera.main.transform.position = originalCameraPosition;
     }
-}
 
+    // Delegate declaration for the bullet count change event
+    public delegate void BulletCountChangeDelegate();
+
+    // Event to be raised when the bullet count changes
+    public static event BulletCountChangeDelegate OnBulletCountChange;
+
+    // Method to subscribe to the bullet count change event
+    public void AddBulletCountChangeListener(BulletCountChangeDelegate listener)
+    {
+        OnBulletCountChange += listener;
+    }
+
+    // Method to unsubscribe from the bullet count change event
+    public void RemoveBulletCountChangeListener(BulletCountChangeDelegate listener)
+    {
+        OnBulletCountChange -= listener;
+    }
+
+    // Method to update the bullet count UI
+    private void UpdateBulletCountUI()
+    {
+        if (bulletCountText != null)
+        {
+            bulletCountText.text = "Bullets: " + ammoCount.ToString();
+        }
+    }
+}

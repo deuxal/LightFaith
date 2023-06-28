@@ -11,8 +11,9 @@ public class ObjectMovement : MonoBehaviour
     public float sprintSpeed = 4f;
     public float sprintDuration = 5f;
     public float sprintCooldown = 2f;
-    public Animator animator; 
-
+    public Animator animator;
+    private bool isClimbing = false;
+    private bool isInitialized = false;
 
     private float currentSpeed;
     private bool isPlayerStopped = false;
@@ -21,7 +22,7 @@ public class ObjectMovement : MonoBehaviour
     private float sprintCooldownTimer;
     private bool isCooldown;
     private SpriteRenderer spriteRenderer;
-    private bool isClimbing = false;
+    
 
     /// <summary>
     [SerializeField] private float sprintTime = 10;
@@ -131,6 +132,11 @@ public class ObjectMovement : MonoBehaviour
             animator.SetBool("IsClimbing", false);
 
             // Rest of your code for normal movement
+        }
+        if (!isInitialized) // Check if the script is initialized
+        {
+            isInitialized = true;
+            return; // Skip the animation control on the first frame
         }
     }
 
