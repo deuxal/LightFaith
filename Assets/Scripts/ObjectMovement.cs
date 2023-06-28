@@ -3,8 +3,7 @@ using UnityEngine.UI;
 
 public class ObjectMovement : MonoBehaviour
 {
-    public float MAXHP;
-    public float HP;
+    
 
     public Collider2D myCollider;
     public LedgeClimb lc;
