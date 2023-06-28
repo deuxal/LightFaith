@@ -14,6 +14,7 @@ public class ObjectMovement : MonoBehaviour
     public float sprintCooldown = 2f;
     public Animator animator; 
 
+
     private float currentSpeed;
     private bool isPlayerStopped = false;
     private float sprintTimer;
@@ -21,6 +22,7 @@ public class ObjectMovement : MonoBehaviour
     private float sprintCooldownTimer;
     private bool isCooldown;
     private SpriteRenderer spriteRenderer;
+    private bool isClimbing = false;
 
     /// <summary>
     [SerializeField] private float sprintTime = 10;
@@ -116,6 +118,21 @@ public class ObjectMovement : MonoBehaviour
             animator.SetBool("IsWalking", false);
         }
         Slider();
+
+
+        // Check if the player is climbing
+        if (isClimbing)
+        {
+            // Set the "IsClimbing" parameter in the animator to true
+            animator.SetBool("IsClimbing", true);
+        }
+        else
+        {
+            // Set the "IsClimbing" parameter in the animator to false
+            animator.SetBool("IsClimbing", false);
+
+            // Rest of your code for normal movement
+        }
     }
 
     private void Slider()
@@ -132,11 +149,13 @@ public class ObjectMovement : MonoBehaviour
     public void TurnOff()
     {
         myCollider.enabled = false;
+        isClimbing = false;
     }
 
     public void TurnOn()
     {
         myCollider.enabled = true;
+        isClimbing = true;
     }
 
     public void StopPlayer()
