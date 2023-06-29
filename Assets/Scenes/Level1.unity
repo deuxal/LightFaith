@@ -4522,11 +4522,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 479623475539972341, guid: 4511983af615d914c89a4d10b06bcc41, type: 3}
       propertyPath: ammoCount
-      value: 10
+      value: -1
       objectReference: {fileID: 0}
     - target: {fileID: 479623475539972341, guid: 4511983af615d914c89a4d10b06bcc41, type: 3}
       propertyPath: ammoLimit
-      value: 10
+      value: -1
       objectReference: {fileID: 0}
     - target: {fileID: 479623475539972341, guid: 4511983af615d914c89a4d10b06bcc41, type: 3}
       propertyPath: bulletCountText

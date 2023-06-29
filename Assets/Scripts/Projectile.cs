@@ -18,6 +18,8 @@ public class Projectile : MonoBehaviour
     public int ammoLimit = -1; // -1 indicates unlimited ammo
     public int ammoCount = 0;
 
+    private Quaternion lastQuaterion;
+
     public void AddAmmoLimit(int limit)
     {
         ammoLimit = limit;
@@ -37,9 +39,12 @@ public class Projectile : MonoBehaviour
             isShootingEnabled = true;
             Vector2 hotspot = new Vector2(projectileModeCursorSprite.texture.width / 2, projectileModeCursorSprite.texture.height / 2);
             Cursor.SetCursor(projectileModeCursorSprite.texture, hotspot, CursorMode.Auto);
+            lastQuaterion = transform.rotation;
+            transform.rotation = Quaternion.identity;
         }
         else if (Input.GetKeyUp(KeyCode.Space))
         {
+            transform.rotation = lastQuaterion;
             isShootingEnabled = false;
             Cursor.SetCursor(null, Vector2.zero, CursorMode.Auto);
         }
