@@ -2,81 +2,105 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerSpriteController : MonoBehaviour
+public class ProjectileModeSpriteController : MonoBehaviour
 {
-    public Sprite[] sprites; // Array of sprite images for different directions
-
-    private SpriteRenderer spriteRenderer;
-
-    private void Start()
-    {
-        spriteRenderer = GetComponent<SpriteRenderer>();
-    }
+    public Animator animator;
+    public Projectile projectile;
+    public Sprite[] sprites;
+    private float aimDirection;
 
     private void Update()
     {
-        // Get the cursor position in screen coordinates
-        Vector3 cursorPosition = Input.mousePosition;
+        bool isProjectileMode = Input.GetKey(KeyCode.Space); // Check if "SPACE" key is held down
 
-        // Convert the cursor position to world coordinates
-        Vector3 worldCursorPosition = Camera.main.ScreenToWorldPoint(cursorPosition);
-        worldCursorPosition.z = 0f;
+        animator.SetBool("IsProjectileMode", isProjectileMode); // Set the "IsProjectileMode" parameter in the animator
 
-        // Calculate the direction from the player to the cursor position
-        Vector3 direction = worldCursorPosition - transform.position;
+        if (projectile != null && projectile.projectileModeCursor != null)
+        {
+            Vector3 direction = projectile.projectileModeCursor.transform.position - transform.position;
+            direction.z = 0f;
+            if (direction.magnitude > 0.01f)
+            {
+                float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
+                SetAnimatorParameters(angle);
+            }
+        }
+        if (isProjectileMode)
+        {
+            Vector3 mouseWorldPosition = GetMouseWorldPosition();
+            Vector3 direction = (mouseWorldPosition - transform.position).normalized;
 
-        // Calculate the angle between the direction and the up vector
-        float angle = Vector3.SignedAngle(Vector3.up, direction.normalized, Vector3.forward);
+        }
+        // Get the aim direction based on the cursor position
+        aimDirection = GetAimDirection();
 
-        // Determine the index of the sprite image based on the angle
-        int spriteIndex = GetSpriteIndex(angle);
+        // Update the aim direction parameter in the animator
+        animator.SetFloat("AimDirection", aimDirection);
+    }
+    private float GetAimDirection()
+    {
+        // Calculate the aim direction based on the cursor position
+        // You can implement your own logic here to determine the aim direction
 
-        // Set the sprite image
-        spriteRenderer.sprite = sprites[spriteIndex];
+        // Example: Calculate the angle between the player's position and the cursor position
+        Vector3 playerToCursor = GetMouseWorldPosition() - transform.position;
+        float angle = Vector3.SignedAngle(Vector3.up, playerToCursor.normalized, Vector3.forward);
+
+        // Map the angle to the aim direction value range (-1 to 1)
+        float aimDirection = Mathf.Clamp(angle / 180f, -1f, 1f);
+
+        return aimDirection;
     }
 
-    private int GetSpriteIndex(float angle)
+
+    private static Vector3 GetMouseWorldPosition()
+    {
+        Vector3 mouseScreenPosition = Input.mousePosition;
+        mouseScreenPosition.z = -Camera.main.transform.position.z;
+        return Camera.main.ScreenToWorldPoint(mouseScreenPosition);
+    }
+
+
+    private void SetAnimatorParameters(float angle)
     {
         // Calculate the index of the sprite image based on the angle range
         // Adjust the angles and sprite indices according to your specific sprite setup
 
-        // Angles for each direction
-        float bottomLeftAngle = -135f;
-        float leftAngle = -90f;
-        float upperLeftAngle = -45f;
-        float upAngle = 0f;
-        float rightAngle = 90f;
-        float upperRightAngle = 45f;
-        float bottomRightAngle = 135f;
-
-        // Determine the index based on angle comparison
-        if (angle >= bottomLeftAngle && angle < leftAngle)
+        // Upper Left
+        if (angle >= -135f && angle < -45f)
         {
-            return 0; // Sprite index for bottom left direction
+            animator.SetFloat("Horizontal", -1f);
+            animator.SetFloat("Vertical", 1f);
         }
-        else if (angle >= leftAngle && angle < upperLeftAngle)
+        // Left
+        else if (angle >= -180f && angle < -135f)
         {
-            return 1; // Sprite index for left direction
+            animator.SetFloat("Horizontal", -1f);
+            animator.SetFloat("Vertical", 0f);
         }
-        else if (angle >= upperLeftAngle && angle < upAngle)
+        // Bottom Left
+        else if (angle >= 135f || angle < -135f)
         {
-            return 2; // Sprite index for upper left direction
+            animator.SetFloat("Horizontal", -1f);
+            animator.SetFloat("Vertical", -1f);
         }
-        else if (angle >= upAngle && angle < rightAngle)
+        // Bottom Right
+        else if (angle >= -135f && angle < -45f)
         {
-            return 3; // Sprite index for up direction
+            animator.SetFloat("Horizontal", 1f);
+            animator.SetFloat("Vertical", -1f);
         }
-        else if (angle >= rightAngle && angle < upperRightAngle)
+        // Right
+        else if (angle >= -45f && angle < 45f)
         {
-            return 4; // Sprite index for right direction
+            animator.SetFloat("Horizontal", 1f);
+            animator.SetFloat("Vertical", 0f);
         }
-        else if (angle >= upperRightAngle && angle < bottomRightAngle)
-        {
-            return 5; // Sprite index for upper right direction
-        }
+        // Upper Right
         else
         {
-            return 6; // Sprite index for bottom right direction
+            animator.SetFloat("Horizontal", 1f);
+            animator.SetFloat("Vertical", 1f);
         }
     }
 }
