@@ -17,7 +17,10 @@ public class ProjectileModeSpriteController : MonoBehaviour
 
         if (projectile != null && projectile.projectileModeCursor != null)
         {
-            Vector3 direction = projectile.projectileModeCursor.transform.position - transform.position;
+            Vector3 mouseWorldPosition = GetMouseWorldPosition();
+            Vector3 direction = (mouseWorldPosition - transform.position).normalized;
+
+            //Vector3 direction = projectile.projectileModeCursor.transform.position - transform.position;
             direction.z = 0f;
             if (direction.magnitude > 0.01f)
             {

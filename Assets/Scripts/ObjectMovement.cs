@@ -89,7 +89,7 @@ public class ObjectMovement : MonoBehaviour
 
         if (lc != null)
         {
-            lc.MoveToPoint(this.transform, () => { TurnOff(); }, () => { TurnOn(); });
+            lc.MoveToPoint(this.transform, () => { StartLedgeClimb(); }, () => { EndLedgeClimb(); });
         }
 
         // Rotate the sprite based on the input keys
@@ -119,20 +119,6 @@ public class ObjectMovement : MonoBehaviour
         }
         Slider();
 
-
-        // Check if the player is climbing
-        if (isClimbing)
-        {
-            // Set the "IsClimbing" parameter in the animator to true
-            animator.SetBool("IsClimbing", true);
-        }
-        else
-        {
-            // Set the "IsClimbing" parameter in the animator to false
-            animator.SetBool("IsClimbing", false);
-
-            // Rest of your code for normal movement
-        }
         if (!isInitialized) // Check if the script is initialized
         {
             isInitialized = true;
@@ -151,14 +137,16 @@ public class ObjectMovement : MonoBehaviour
         transform.position += (Vector3.right * horizontalMovement * currentSpeed * Time.fixedDeltaTime);
     }
 
-    public void TurnOff()
+    public void StartLedgeClimb()
     {
+        animator.SetBool("IsClimbing", true);
         myCollider.enabled = false;
         isClimbing = false;
     }
 
-    public void TurnOn()
+    public void EndLedgeClimb()
     {
+        animator.SetBool("IsClimbing", false);
         myCollider.enabled = true;
         isClimbing = true;
     }
