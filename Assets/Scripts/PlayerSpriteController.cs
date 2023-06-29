@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 
 public class ProjectileModeSpriteController : MonoBehaviour
@@ -88,7 +89,7 @@ public class ProjectileModeSpriteController : MonoBehaviour
             animator.SetFloat("Vertical", -1f);
         }
         // Bottom Right
-        else if (angle >= -135f && angle < -45f)
+        else if (angle >= 45f && angle < 135f)
         {
             animator.SetFloat("Horizontal", 1f);
             animator.SetFloat("Vertical", -1f);
@@ -100,10 +101,22 @@ public class ProjectileModeSpriteController : MonoBehaviour
             animator.SetFloat("Vertical", 0f);
         }
         // Upper Right
-        else
+        else if (angle >= -45f && angle < 45f)
         {
             animator.SetFloat("Horizontal", 1f);
             animator.SetFloat("Vertical", 1f);
+        }
+        // Up
+        else if (angle >= 45f && angle < 135f)
+        {
+            animator.SetFloat("Horizontal", 0f);
+            animator.SetFloat("Vertical", 1f);
+        }
+        // Down
+        else if (angle >= -135f && angle < -45f)
+        {
+            animator.SetFloat("Horizontal", 0f);
+            animator.SetFloat("Vertical", -1f);
         }
     }
 }
