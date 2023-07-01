@@ -10,6 +10,7 @@ public class ProjectileModeSpriteController : MonoBehaviour
     public Sprite[] sprites;
     private float aimDirection;
 
+
     private void Update()
     {
         bool isProjectileMode = Input.GetKey(KeyCode.Space); // Check if "SPACE" key is held down
@@ -67,56 +68,50 @@ public class ProjectileModeSpriteController : MonoBehaviour
 
     private void SetAnimatorParameters(float angle)
     {
-        // Calculate the index of the sprite image based on the angle range
-        // Adjust the angles and sprite indices according to your specific sprite setup
+        Vector3 mouseWorldPosition = GetMouseWorldPosition();
+        Vector3 direction = (mouseWorldPosition - transform.position).normalized;
+
+        float aimAngle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
 
         // Upper Left
-        if (angle >= -135f && angle < -45f)
+        if (angle >= -135f && angle < -50f)
         {
-            animator.SetFloat("Horizontal", -1f);
-            animator.SetFloat("Vertical", 1f);
+            animator.SetFloat("AimDirection", 1f); // Set the "AimDirection" parameter to 1 for Upper Left
         }
         // Left
         else if (angle >= -180f && angle < -135f)
         {
-            animator.SetFloat("Horizontal", -1f);
-            animator.SetFloat("Vertical", 0f);
+            animator.SetFloat("AimDirection", 2f); // Set the "AimDirection" parameter to 2 for Left
         }
         // Bottom Left
         else if (angle >= 135f || angle < -135f)
         {
-            animator.SetFloat("Horizontal", -1f);
-            animator.SetFloat("Vertical", -1f);
+            animator.SetFloat("AimDirection", 3f); // Set the "AimDirection" parameter to 3 for Bottom Left
         }
         // Bottom Right
-        else if (angle >= 45f && angle < 135f)
+        else if (angle >= -135f && angle < -45f)
         {
-            animator.SetFloat("Horizontal", 1f);
-            animator.SetFloat("Vertical", -1f);
+            animator.SetFloat("AimDirection", 4f); // Set the "AimDirection" parameter to 4 for Bottom Right
         }
         // Right
         else if (angle >= -45f && angle < 45f)
         {
-            animator.SetFloat("Horizontal", 1f);
-            animator.SetFloat("Vertical", 0f);
+            animator.SetFloat("AimDirection", 5f); // Set the "AimDirection" parameter to 5 for Right
         }
         // Upper Right
-        else if (angle >= -45f && angle < 45f)
+        else if (angle >= 50f && angle < 135f)
         {
-            animator.SetFloat("Horizontal", 1f);
-            animator.SetFloat("Vertical", 1f);
+            animator.SetFloat("AimDirection", 6f); // Set the "AimDirection" parameter to 6 for Upper Right
         }
-        // Up
-        else if (angle >= 45f && angle < 135f)
+        // Up (Aiming Up)
+        else if (angle >= -50f && angle < -45f)
         {
-            animator.SetFloat("Horizontal", 0f);
-            animator.SetFloat("Vertical", 1f);
+            animator.SetFloat("AimDirection", 7f); // Set the "AimDirection" parameter to 7 for Aiming Up
         }
-        // Down
-        else if (angle >= -135f && angle < -45f)
+        // Default (No aim direction)
+        else
         {
-            animator.SetFloat("Horizontal", 0f);
-            animator.SetFloat("Vertical", -1f);
+            animator.SetFloat("AimDirection", 0f); // Set the "AimDirection" parameter to 0 for default (No aim direction)
         }
     }
 }

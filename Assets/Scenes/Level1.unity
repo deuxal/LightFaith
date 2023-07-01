@@ -325,11 +325,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8106078895721461098, guid: b315fcb30561190468fad5e99c56c03f, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -3.144
+      value: -5.5
       objectReference: {fileID: 0}
     - target: {fileID: 8106078895721461098, guid: b315fcb30561190468fad5e99c56c03f, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -3.48
+      value: -3.46
       objectReference: {fileID: 0}
     - target: {fileID: 8106078895721461098, guid: b315fcb30561190468fad5e99c56c03f, type: 3}
       propertyPath: m_LocalPosition.z
@@ -2849,7 +2849,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -58.195312, y: -148}
+  m_AnchoredPosition: {x: -58.195496, y: -148}
   m_SizeDelta: {x: 1619.6, y: -366.476}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1028590330
@@ -4030,11 +4030,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6223929397973274647, guid: cec1f156c30fd6f4f904a52a32c297b0, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -5.176874
+      value: 0.65
       objectReference: {fileID: 0}
     - target: {fileID: 6223929397973274647, guid: cec1f156c30fd6f4f904a52a32c297b0, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -2.9028358
+      value: -2.72
       objectReference: {fileID: 0}
     - target: {fileID: 6223929397973274647, guid: cec1f156c30fd6f4f904a52a32c297b0, type: 3}
       propertyPath: m_LocalPosition.z
@@ -4522,11 +4522,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 479623475539972341, guid: 4511983af615d914c89a4d10b06bcc41, type: 3}
       propertyPath: ammoCount
-      value: -1
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 479623475539972341, guid: 4511983af615d914c89a4d10b06bcc41, type: 3}
       propertyPath: ammoLimit
-      value: -1
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 479623475539972341, guid: 4511983af615d914c89a4d10b06bcc41, type: 3}
       propertyPath: bulletCountText
