@@ -104,9 +104,14 @@ public class ProjectileModeSpriteController : MonoBehaviour
             animator.SetFloat("AimDirection", 6f); // Set the "AimDirection" parameter to 6 for Upper Right
         }
         // Up (Aiming Up)
-        else if (angle >= -50f && angle < -45f)
+        else if (angle >= 135f && angle < 225f)
         {
             animator.SetFloat("AimDirection", 7f); // Set the "AimDirection" parameter to 7 for Aiming Up
+        }
+        // Down
+        else if (angle >= -135f && angle < -225f)
+        {
+            animator.SetFloat("AimDirection", 8f); // Set the "AimDirection" parameter to 8 for Down
         }
         // Default (No aim direction)
         else
