@@ -118,5 +118,6 @@ public class ProjectileModeSpriteController : MonoBehaviour
         {
             animator.SetFloat("AimDirection", 0f); // Set the "AimDirection" parameter to 0 for default (No aim direction)
         }
+
     }
 }
