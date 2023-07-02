@@ -7,6 +7,7 @@ TagManager:
   - Edge
   - Light
   - Bullet
+  - Drawer
   layers:
   - Default
   - TransparentFX
@@ -17,7 +18,7 @@ TagManager:
   - Enemy
   - GameObject
   - Light
-  - 
+  - Drawer
   - 
   - 
   - 

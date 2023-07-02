@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class Projectile : MonoBehaviour
 {
@@ -11,7 +12,7 @@ public class Projectile : MonoBehaviour
     public float shootCooldown = 0.5f;
     public Sprite projectileModeCursorSprite;
     public GameObject projectileModeCursor;
-    public Text bulletCountText; // Reference to the UI text component
+    public TMP_Text bulletCountText; // Reference to the UI text component
 
     private bool isShootingEnabled = false;
     private bool isCooldownActive = false;
