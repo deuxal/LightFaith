@@ -11,7 +11,7 @@ public class InventorySystem : MonoBehaviour
     public GameObject KEY1UI;
     public GameObject KEY2UI;
     public GameObject BATTERYUI;
-
+    public GameObject BULLETUI;
 
     public MouseControlledLight mouseControlledLight;
 
@@ -47,6 +47,10 @@ public class InventorySystem : MonoBehaviour
         {
             KEY2UI.SetActive(true);
         }
+        if (item == 4)
+        {
+            BULLETUI.SetActive(true);
+        }
     }
 
     public void UseItem(int item)
@@ -67,6 +71,10 @@ public class InventorySystem : MonoBehaviour
         else if (item == 3)
         {
             // Handle using KEY2 item
+        }
+        else if (item == 4)
+        {
+            // handle using BULLET item
         }
     }
 }
