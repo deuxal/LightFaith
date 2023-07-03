@@ -27,6 +27,11 @@ public class Projectile : MonoBehaviour
         ammoCount = limit;
         UpdateBulletCountUI();
     }
+    public void ResetAmmoCount()
+    {
+        ammoCount = ammoLimit;
+        UpdateBulletCountUI();
+    }
 
     private void Start()
     {

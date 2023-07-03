@@ -14,10 +14,12 @@ public class InventorySystem : MonoBehaviour
     public GameObject BULLETUI;
 
     public MouseControlledLight mouseControlledLight;
+    public Projectile projectile;
 
     private void Start()
     {
         mouseControlledLight = FindObjectOfType<MouseControlledLight>(); // Find the MouseControlledLight script in the scene
+        projectile = FindObjectOfType<Projectile>();
     }
 
     // Update is called once per frame
@@ -57,7 +59,7 @@ public class InventorySystem : MonoBehaviour
     {
         if (item == 0)
         {
-            // Handle using HP item
+            HPUI.SetActive(false);
         }
         else if (item == 1)
         {
@@ -66,16 +68,21 @@ public class InventorySystem : MonoBehaviour
         }
         else if (item == 2)
         {
-            // Handle using KEY1 item
+            KEY1UI.SetActive(false);
         }
         else if (item == 3)
         {
-            // Handle using KEY2 item
+            KEY2UI.SetActive(false);
         }
         else if (item == 4)
         {
-            // handle using BULLET item
+            BULLETUI.SetActive(false);
+            ResetAmmoCount();
         }
+    }
+    private void ResetAmmoCount()
+    {
+        projectile.ResetAmmoCount();
     }
 }
 
