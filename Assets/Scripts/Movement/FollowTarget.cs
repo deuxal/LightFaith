@@ -20,7 +20,7 @@ public class FollowTarget : Physics2DObject
 
     [Header("Following Distance")]
     // The distance at which the object will start following the target
-    public float followDistance = 2f;
+    public float followDistance = 4f;
 
     // FixedUpdate is called once per frame
     void FixedUpdate()
