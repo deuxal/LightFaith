@@ -11,6 +11,8 @@ public class HealthSystemAttribute : MonoBehaviour
     private int playerNumber;
 
     public event Action<int> OnHealthModified; // Event to notify when health is modified
+    public bool deathOnZeroHp = false;
+
 
     private void Start()
     {
@@ -59,7 +61,7 @@ public class HealthSystemAttribute : MonoBehaviour
 
         OnHealthModified?.Invoke(health); // Invoke the OnHealthModified event with the updated health value
 
-        if (health <= 0)
+        if (health <= 0 && deathOnZeroHp)
         {
             Destroy(gameObject);
         }

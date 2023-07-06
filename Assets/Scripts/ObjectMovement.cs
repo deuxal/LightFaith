@@ -3,8 +3,8 @@ using UnityEngine.UI;
 
 public class ObjectMovement : MonoBehaviour
 {
-    
 
+    public HealthSystemAttribute hsa;
     public Collider2D myCollider;
     public LedgeClimb lc;
     public float normalSpeed = 2f;
@@ -43,6 +43,11 @@ public class ObjectMovement : MonoBehaviour
 
     private void Update()
     {
+        if (hsa.health <= 0)
+        {
+            animator.SetBool("IsDeath", true);
+            this.enabled = false;
+        }
         if (!isCooldown && (Input.GetKey(KeyCode.LeftShift) || Input.GetKey(KeyCode.RightShift)) && currentSprintTime > 0)
         {
             if (!isSprinting)
