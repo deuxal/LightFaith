@@ -5,7 +5,7 @@ using System;
 public class HealthSystemAttribute : MonoBehaviour
 {
     public int health = 3;
-
+    private int originalHealth;
     private UIScript ui;
     private int maxHealth;
     private int playerNumber;
@@ -35,6 +35,7 @@ public class HealthSystemAttribute : MonoBehaviour
         }
 
         maxHealth = health;
+        originalHealth = health;
     }
 
     public int GetCurrentHealth()
@@ -62,5 +63,9 @@ public class HealthSystemAttribute : MonoBehaviour
         {
             Destroy(gameObject);
         }
+    }
+    public void ResetHealth()
+    {
+        health = originalHealth;
     }
 }

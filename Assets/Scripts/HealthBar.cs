@@ -22,7 +22,7 @@ public class HealthBar : MonoBehaviour
         UpdateHealthBars();
     }
 
-    private void UpdateHealthBars()
+    public void UpdateHealthBars()
     {
         int currentHealth = healthSystem.GetCurrentHealth();
 

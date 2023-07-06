@@ -15,11 +15,14 @@ public class InventorySystem : MonoBehaviour
 
     public MouseControlledLight mouseControlledLight;
     public Projectile projectile;
+    public HealthSystemAttribute healthSystem;
+    public HealthBar healthBar;
 
     private void Start()
     {
         mouseControlledLight = FindObjectOfType<MouseControlledLight>(); // Find the MouseControlledLight script in the scene
         projectile = FindObjectOfType<Projectile>();
+        healthSystem = FindObjectOfType<HealthSystemAttribute>();
     }
 
     // Update is called once per frame
@@ -52,6 +55,8 @@ public class InventorySystem : MonoBehaviour
         if (item == 0)
         {
             HPUI.SetActive(false);
+            healthSystem.ResetHealth();
+            healthBar.UpdateHealthBars();
         }
         else if (item == 1)
         {
