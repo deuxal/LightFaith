@@ -41,3 +41,4 @@ public class HealthBar : MonoBehaviour
         healthSystem.OnHealthModified -= OnHealthModified;
     }
 }
+
