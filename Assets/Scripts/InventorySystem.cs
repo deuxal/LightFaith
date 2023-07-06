@@ -36,6 +36,8 @@ public class InventorySystem : MonoBehaviour
 
     public void GetItem(int item)
     {
+        Debug.Log(item);
+
         if (item == 0)
         {
             HPUI.SetActive(true);
@@ -52,6 +54,7 @@ public class InventorySystem : MonoBehaviour
 
     public void UseItem(int item)
     {
+        Debug.Log("use: " + item);
         if (item == 0)
         {
             HPUI.SetActive(false);
