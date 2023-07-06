@@ -27,7 +27,7 @@ public class HealthBar : MonoBehaviour
         int currentHealth = healthSystem.GetCurrentHealth();
 
         // Calculate the number of active health bars based on the current health
-        int activeHealthBars = Mathf.CeilToInt((float)currentHealth / maxHealthBars);
+        int activeHealthBars = currentHealth;
 
         // Activate/deactivate bars based on the activeHealthBars count
         for (int i = 0; i < healthBars.Length; i++)

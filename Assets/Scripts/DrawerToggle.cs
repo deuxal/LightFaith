@@ -10,6 +10,17 @@ public class DrawerToggle : MonoBehaviour
 
     private bool isPlayerClose = false;
 
+    public int itemsToGenerate = 1;
+    public List<int> items;
+
+    public void Start()
+    {
+        for (int i = 0; i < itemsToGenerate; i++)
+        {
+            items.Add(Random.Range(0,3));
+        }
+    }
+
     private void Update()
     {
         // Check the distance between the player and the Drawer sprite
@@ -31,6 +42,17 @@ public class DrawerToggle : MonoBehaviour
 
     private void ToggleDrawerUI(bool isActive)
     {
+        if (isActive == true) {
+            DrawerUI dui = drawerUI.GetComponent<DrawerUI>();
+            dui.Setup(items, (id) => { OnItemUsed(id); });
+
+        }
         drawerUI.SetActive(isActive);
+    }
+
+    public void OnItemUsed(int id)
+    {
+        Debug.Log(id);
+        items[id] = -1;
     }
 }

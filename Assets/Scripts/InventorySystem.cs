@@ -43,14 +43,6 @@ public class InventorySystem : MonoBehaviour
         }
         if (item == 2)
         {
-            KEY1UI.SetActive(true);
-        }
-        if (item == 3)
-        {
-            KEY2UI.SetActive(true);
-        }
-        if (item == 4)
-        {
             BULLETUI.SetActive(true);
         }
     }
@@ -67,14 +59,6 @@ public class InventorySystem : MonoBehaviour
             mouseControlledLight.ResetBatteryDuration();
         }
         else if (item == 2)
-        {
-            KEY1UI.SetActive(false);
-        }
-        else if (item == 3)
-        {
-            KEY2UI.SetActive(false);
-        }
-        else if (item == 4)
         {
             BULLETUI.SetActive(false);
             ResetAmmoCount();
