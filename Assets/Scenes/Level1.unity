@@ -4880,9 +4880,10 @@ GameObject:
   - component: {fileID: 2039242407}
   - component: {fileID: 2039242406}
   - component: {fileID: 2039242409}
-  - component: {fileID: 2039242411}
   - component: {fileID: 2039242412}
-  - component: {fileID: 2039242413}
+  - component: {fileID: 2039242414}
+  - component: {fileID: 2039242415}
+  - component: {fileID: 2039242416}
   m_Layer: 0
   m_Name: Monsters_5
   m_TagString: Untagged
@@ -4968,11 +4969,11 @@ Rigidbody2D:
   m_BodyType: 0
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
-  m_UseAutoMass: 0
-  m_Mass: 1
+  m_UseAutoMass: 1
+  m_Mass: 13.460259
   m_LinearDrag: 0
   m_AngularDrag: 0.05
-  m_GravityScale: 1
+  m_GravityScale: 1.77
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
@@ -4983,26 +4984,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 6
---- !u!114 &2039242411
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2039242405}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 66eec6aefb56e4015b605a5088d6e109, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  rigidbody2D: {fileID: 0}
-  speed: 2.88
-  directionChangeInterval: 3
-  orientToDirection: 1
-  lookAxis: 1
-  waypoints:
-  - {x: 14.713013, y: -3.1241972}
+  m_Constraints: 4
 --- !u!61 &2039242412
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -5011,7 +4993,7 @@ BoxCollider2D:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2039242405}
   m_Enabled: 1
-  m_Density: 1
+  m_Density: 6.66
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
@@ -5048,7 +5030,21 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 2.3125, y: 1.8125}
   m_EdgeRadius: 0
---- !u!114 &2039242413
+--- !u!114 &2039242414
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2039242405}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2217dcb41a1c3f54fa114c4868eea4e6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  health: 3
+  deathOnZeroHp: 1
+--- !u!114 &2039242415
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -5062,10 +5058,29 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rigidbody2D: {fileID: 0}
   target: {fileID: 936208672}
-  speed: 1.61
-  lookAtTarget: 0
-  useSide: 1
-  followDistance: 2
+  speed: 3
+  lookAtTarget: 1
+  useSide: 0
+  followDistance: 4
+--- !u!114 &2039242416
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2039242405}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 66eec6aefb56e4015b605a5088d6e109, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rigidbody2D: {fileID: 0}
+  speed: 1.64
+  directionChangeInterval: 3
+  orientToDirection: 0
+  lookAxis: 0
+  waypoints:
+  - {x: 16.128922, y: -3.1146073}
 --- !u!1001 &458005303091130167
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5333,12 +5348,20 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6109950698239457094, guid: 4511983af615d914c89a4d10b06bcc41, type: 3}
+      propertyPath: m_Mass
+      value: 156.6723
+      objectReference: {fileID: 0}
+    - target: {fileID: 6109950698239457094, guid: 4511983af615d914c89a4d10b06bcc41, type: 3}
       propertyPath: m_BodyType
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6109950698239457094, guid: 4511983af615d914c89a4d10b06bcc41, type: 3}
       propertyPath: m_Constraints
       value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 6109950698239457094, guid: 4511983af615d914c89a4d10b06bcc41, type: 3}
+      propertyPath: m_UseAutoMass
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6109950698239457094, guid: 4511983af615d914c89a4d10b06bcc41, type: 3}
       propertyPath: m_GravityScale
@@ -5395,6 +5418,10 @@ PrefabInstance:
     - target: {fileID: 7946690012223517333, guid: 4511983af615d914c89a4d10b06bcc41, type: 3}
       propertyPath: m_Size.y
       value: 2.34
+      objectReference: {fileID: 0}
+    - target: {fileID: 7946690012223517333, guid: 4511983af615d914c89a4d10b06bcc41, type: 3}
+      propertyPath: m_Density
+      value: 86.36
       objectReference: {fileID: 0}
     - target: {fileID: 7946690012223517333, guid: 4511983af615d914c89a4d10b06bcc41, type: 3}
       propertyPath: m_Offset.y
