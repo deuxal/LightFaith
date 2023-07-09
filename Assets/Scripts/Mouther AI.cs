@@ -5,17 +5,19 @@ public class MoutherAI : MonoBehaviour
 {
     public Transform player;
     public float jumpForce = 5f;
+    public float forwardForce = 2f;
     public float stopDistance = 5f;
     public float shootingCooldown = 2f;
+    public float jumpCooldown = 2f;
     public GameObject projectilePrefab;
     public Transform projectileSpawnPoint;
     public float projectileForce = 10f;
     public float projectileSelfDestructTime = 5f; // Time until the projectile self-destructs
-    public float moveSpeed = 2f; // Enemy movement speed
 
     private bool isJumping = false;
     private bool isShooting = false;
     private bool isCooldownActive = false;
+    private bool isJumpCooldownActive = false;
     private Rigidbody2D rb;
 
     private void Start()
@@ -27,25 +29,21 @@ public class MoutherAI : MonoBehaviour
     {
         if (player != null)
         {
-            float distanceToPlayer = Vector2.Distance(transform.position, player.position);
+            // Shooting behavior
+            if (!isShooting)
+            {
+                float distanceToPlayer = Vector2.Distance(transform.position, player.position);
+                if (distanceToPlayer < stopDistance && !isCooldownActive)
+                {
+                    Shoot();
+                    return; // Skip jumping behavior if shooting is triggered
+                }
+            }
 
             // Jumping behavior
-            if (!isJumping && distanceToPlayer < stopDistance)
+            if (!isJumping && !isJumpCooldownActive)
             {
                 Jump();
-            }
-
-            // Shooting behavior
-            if (!isShooting && distanceToPlayer < stopDistance && !isCooldownActive)
-            {
-                Shoot();
-            }
-
-            // Move forward when jumping
-            if (isJumping)
-            {
-                Vector2 direction = transform.right;
-                rb.velocity = new Vector2(direction.x * moveSpeed, rb.velocity.y);
             }
         }
     }
@@ -54,15 +52,23 @@ public class MoutherAI : MonoBehaviour
     {
         // Perform jump action
         rb.AddForce(new Vector2(0f, jumpForce), ForceMode2D.Impulse);
+        rb.AddForce(new Vector2(forwardForce, 0f), ForceMode2D.Impulse);
         isJumping = true;
+        isJumpCooldownActive = true;
 
-        // Reset jumping state after a delay
+        // Reset jumping state and activate jump cooldown after a delay
         Invoke(nameof(ResetJumping), 1f);
+        Invoke(nameof(ResetJumpCooldown), jumpCooldown);
     }
 
     private void ResetJumping()
     {
         isJumping = false;
+    }
+
+    private void ResetJumpCooldown()
+    {
+        isJumpCooldownActive = false;
     }
 
     private void Shoot()
@@ -94,4 +100,3 @@ public class MoutherAI : MonoBehaviour
         isCooldownActive = false;
     }
 }
-
