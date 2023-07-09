@@ -11,6 +11,7 @@ public class MoutherAI : MonoBehaviour
     public Transform projectileSpawnPoint;
     public float projectileForce = 10f;
     public float projectileSelfDestructTime = 5f; // Time until the projectile self-destructs
+    public float moveSpeed = 2f; // Enemy movement speed
 
     private bool isJumping = false;
     private bool isShooting = false;
@@ -38,6 +39,13 @@ public class MoutherAI : MonoBehaviour
             if (!isShooting && distanceToPlayer < stopDistance && !isCooldownActive)
             {
                 Shoot();
+            }
+
+            // Move forward when jumping
+            if (isJumping)
+            {
+                Vector2 direction = transform.right;
+                rb.velocity = new Vector2(direction.x * moveSpeed, rb.velocity.y);
             }
         }
     }
@@ -86,3 +94,4 @@ public class MoutherAI : MonoBehaviour
         isCooldownActive = false;
     }
 }
+
