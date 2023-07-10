@@ -2,32 +2,28 @@ using UnityEngine;
 
 public class PlayerFeedback : MonoBehaviour
 {
-    public Sprite Hurt; // The sprite to use when the player gets hurt
+    public Animator animator; // Reference to the Animator component
+    public bool isHurt = false; // Indicates if the player is currently hurt
     public float hitForce = 5f; // The backward force applied to the player when hit
     public float hitDuration = 0.2f; // The duration in seconds for the hit effect
-    public float hitCooldown = 1f; // The cooldown period in seconds before the player can get hit again
+    public float hitCooldown = 1f; // The cooldown period in seconds before the player can get hurt again
 
-    private SpriteRenderer spriteRenderer;
     private Rigidbody2D rb;
-    private Sprite originalSprite;
-    private bool isHit = false;
     private bool isCooldownActive = false;
 
     private void Awake()
     {
-        spriteRenderer = GetComponent<SpriteRenderer>();
         rb = GetComponent<Rigidbody2D>();
-        originalSprite = spriteRenderer.sprite;
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.CompareTag("Enemy") && !isHit && !isCooldownActive)
+        if (collision.gameObject.CompareTag("Enemy") && !isHurt && !isCooldownActive)
         {
             // Apply hit effect
-            spriteRenderer.sprite = Hurt;
+            animator.SetBool("IsHurt", true); // Set the "IsHurt" parameter to true in the Animator
             rb.AddForce(Vector2.left * hitForce, ForceMode2D.Impulse);
-            isHit = true;
+            isHurt = true;
 
             // Reset hit effect after a duration
             Invoke(nameof(ResetHitEffect), hitDuration);
@@ -35,6 +31,7 @@ public class PlayerFeedback : MonoBehaviour
             // Start cooldown period
             isCooldownActive = true;
             Invoke(nameof(ResetCooldown), hitCooldown);
+
             // Log hit event
             Debug.Log("Player hit.");
         }
@@ -42,8 +39,8 @@ public class PlayerFeedback : MonoBehaviour
 
     private void ResetHitEffect()
     {
-        spriteRenderer.sprite = originalSprite;
-        isHit = false;
+        animator.SetBool("IsHurt", false); // Set the "IsHurt" parameter to false in the Animator
+        isHurt = false;
     }
 
     private void ResetCooldown()
@@ -51,4 +48,3 @@ public class PlayerFeedback : MonoBehaviour
         isCooldownActive = false;
     }
 }
-

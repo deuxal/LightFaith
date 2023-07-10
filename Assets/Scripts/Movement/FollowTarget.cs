@@ -22,11 +22,20 @@ public class FollowTarget : Physics2DObject
     // The distance at which the object will start following the target
     public float followDistance = 4f;
 
+    // Delay duration in seconds after hurting the player
+    public float hurtDelay = 2f;
+
+    private bool isHurtCooldown = false;
+
     // FixedUpdate is called once per frame
     void FixedUpdate()
     {
         // Do nothing if the target hasn't been assigned or it was destroyed for some reason
         if (target == null)
+            return;
+
+        // Check if the enemy is in hurt cooldown
+        if (isHurtCooldown)
             return;
 
         // Check if the distance to the target is within the follow distance
@@ -42,5 +51,24 @@ public class FollowTarget : Physics2DObject
             // Move towards the target
             rigidbody2D.MovePosition(Vector2.Lerp(transform.position, target.position, Time.fixedDeltaTime * speed));
         }
+    }
+
+    // Call this method when the enemy hurts the player
+    public void StartHurtCooldown()
+    {
+        // Start the hurt cooldown delay
+        StartCoroutine(HurtCooldownDelay());
+    }
+
+    private IEnumerator HurtCooldownDelay()
+    {
+        // Set the hurt cooldown flag to true
+        isHurtCooldown = true;
+
+        // Wait for the specified duration
+        yield return new WaitForSeconds(hurtDelay);
+
+        // Reset the hurt cooldown flag
+        isHurtCooldown = false;
     }
 }
