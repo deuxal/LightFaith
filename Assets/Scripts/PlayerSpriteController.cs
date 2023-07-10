@@ -71,8 +71,7 @@ public class ProjectileModeSpriteController : MonoBehaviour
         Vector3 mouseWorldPosition = GetMouseWorldPosition();
         Vector3 direction = (mouseWorldPosition - transform.position).normalized;
         // Debug angle and aim direction values
-        Debug.Log("Angle: " + angle);
-        Debug.Log("Aim Direction: " + animator.GetFloat("AimDirection"));
+       
 
         float aimAngle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
 
