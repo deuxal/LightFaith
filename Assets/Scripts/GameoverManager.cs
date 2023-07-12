@@ -4,6 +4,7 @@ using UnityEngine.SceneManagement;
 
 public class GameOverManager : MonoBehaviour
 {
+    public Canvas uiCanvas;
     public Canvas gameOverCanvas;
     public Button resetButton;
     public Button backToMenuButton;
@@ -31,8 +32,8 @@ public class GameOverManager : MonoBehaviour
 
     public void ShowGameOverPanel()
     {
-        // Disable other UI elements
-        // (e.g., disable the main game canvas or HUD)
+        // Disable the UI canvas
+        uiCanvas.enabled = false;
 
         // Enable the game over canvas
         gameOverCanvas.enabled = true;

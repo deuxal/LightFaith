@@ -537,9 +537,10 @@ MonoBehaviour:
       m_Calls: []
   m_text: "coding: Clemente riedemann * Felipe Dumont * ChatGPT\n       \n      Sprites:
     Clemente Riedemann\n          \n           Rain Pefab: Jeff Johnson (Digital
-    Ruby)\n                \n                 Animations: Clemente Riedemann\n               
-    \n                      Game created by clemente riedemann\n                           
-    \n\n\n\n\n                            thank you for playing"
+    Ruby)\n     \n              Font: Gurkan Sengun\n           \n                
+    Animations: Clemente Riedemann\n                \n                      Game
+    created by clemente riedemann\n                            \n\n                           
+    thank you for playing!\n\n\n\n\n                            "
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 131169f8073e5784e8a2053f090590db, type: 2}
   m_sharedMaterial: {fileID: 6813704213927370802, guid: 131169f8073e5784e8a2053f090590db, type: 2}
