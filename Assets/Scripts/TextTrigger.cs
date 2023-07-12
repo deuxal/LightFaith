@@ -1,42 +1,52 @@
 using UnityEngine;
-using TMPro;
 
 public class TextMessageTrigger : MonoBehaviour
 {
-    public Transform triggerPosition;
-    public TMP_Text textElement;
-    public bool toggleOnTrigger = true;
+    public GameObject textPrefab; // Prefab of the text object to display
+    public Transform triggerPosition; // Position where the text should appear
+    public string message; // The message to display
 
-    private void OnTriggerEnter(Collider other)
+    private GameObject textObject; // Reference to the instantiated text object
+
+    private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (other.CompareTag("Player"))
+        if (collision.CompareTag("Player"))
         {
-            if (toggleOnTrigger)
-                ToggleTextElement(true);
+            ShowTextMessage();
         }
     }
 
-    private void OnTriggerExit(Collider other)
+    private void OnTriggerExit2D(Collider2D collision)
     {
-        if (other.CompareTag("Player"))
+        if (collision.CompareTag("Player"))
         {
-            if (toggleOnTrigger)
-                ToggleTextElement(false);
+            HideTextMessage();
         }
     }
 
-    private void OnTriggerStay(Collider other)
+    private void ShowTextMessage()
     {
-        if (other.CompareTag("Player"))
+        if (textObject == null)
         {
-            if (!toggleOnTrigger)
-                ToggleTextElement(true);
+            textObject = Instantiate(textPrefab, triggerPosition.position, Quaternion.identity);
+            TextMesh textMesh = textObject.GetComponent<TextMesh>();
+            if (textMesh != null)
+            {
+                textMesh.text = message;
+            }
+        }
+        else
+        {
+            textObject.SetActive(true);
         }
     }
 
-    private void ToggleTextElement(bool isActive)
+    private void HideTextMessage()
     {
-        textElement.gameObject.SetActive(isActive);
+        if (textObject != null)
+        {
+            textObject.SetActive(false);
+        }
     }
 }
 
