@@ -12,6 +12,13 @@ public class ProjectileModeSpriteController : MonoBehaviour
 
     private void Update()
     {
+
+        if (animator.GetBool("IsHurt")  )
+        {
+            animator.SetBool("IsProjectileMode", false);
+            return;
+        }
+
         bool isProjectileMode = Input.GetKey(KeyCode.Space); // Check if "SPACE" key is held down
 
         animator.SetBool("IsProjectileMode", isProjectileMode); // Set the "IsProjectileMode" parameter in the animator
@@ -39,7 +46,7 @@ public class ProjectileModeSpriteController : MonoBehaviour
         aimDirection = GetAimDirection();
 
         // Update the aim direction parameter in the animator
-        animator.SetFloat("AimDirection", aimDirection);
+        // animator.SetFloat("AimDirection", aimDirection);
     }
     private float GetAimDirection()
     {
@@ -70,10 +77,32 @@ public class ProjectileModeSpriteController : MonoBehaviour
         Vector3 mouseWorldPosition = GetMouseWorldPosition();
         Vector3 direction = (mouseWorldPosition - transform.position).normalized;
         // Debug angle and aim direction values
-       
+
 
         float aimAngle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
 
+        
+
+        if(aimAngle < 0)
+        {
+
+            aimAngle = 360 + aimAngle;
+        }
+
+        int counter = 0;
+        for (; aimAngle > 0;aimAngle -= 45)
+        {
+            if(aimAngle <= 45)
+            {
+                Debug.Log("Current Angle: " + (counter + 1) + " " + ((counter) * 45));
+                int currentValue = (counter + 1);
+                animator.SetFloat("AimDirection", currentValue);
+            }
+            counter += 1;
+        }
+
+        
+        /*
         // Upper Left
         if (angle >= -135f && angle <= -50f)
         {
@@ -119,6 +148,7 @@ public class ProjectileModeSpriteController : MonoBehaviour
         {
             animator.SetFloat("AimDirection", 0.0f); // Set the "AimDirection" parameter to 0.0 for default (No aim direction)
         }
-    }
+        */
+        }
 
 }
