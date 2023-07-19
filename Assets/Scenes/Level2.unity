@@ -488,7 +488,10 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 3034730091946521661, guid: 361abd703288a3d488393bcd255ab4ea, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1092124788}
   m_SourcePrefab: {fileID: 100100000, guid: 361abd703288a3d488393bcd255ab4ea, type: 3}
 --- !u!1 &70019874
 GameObject:
@@ -1700,7 +1703,11 @@ PrefabInstance:
       objectReference: {fileID: 1372060156}
     - target: {fileID: 7894535685362097315, guid: 986e06a52cb66c345811d0e44c0eb355, type: 3}
       propertyPath: itemsToGenerate
-      value: 3
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 7894535685362097315, guid: 986e06a52cb66c345811d0e44c0eb355, type: 3}
+      propertyPath: proximityDistance
+      value: 1.17
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -6169,6 +6176,30 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1084573522}
   m_CullTransparentMesh: 1
+--- !u!1 &1092124787 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3034730091946521661, guid: 361abd703288a3d488393bcd255ab4ea, type: 3}
+  m_PrefabInstance: {fileID: 68880979}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1092124788
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1092124787}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4330d34abf50140d5bad3d3b0608cca2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rigidbody2D: {fileID: 0}
+  target: {fileID: 294895282}
+  speed: 1
+  lookAtTarget: 0
+  useSide: 0
+  followDistance: 4
+  hurtDelay: 2
 --- !u!1 &1115075535
 GameObject:
   m_ObjectHideFlags: 0
@@ -10401,8 +10432,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   InventoryUI: {fileID: 1637940284}
   HPUI: {fileID: 667036283}
-  KEY1UI: {fileID: 0}
-  KEY2UI: {fileID: 0}
   BATTERYUI: {fileID: 1202938612}
   BULLETUI: {fileID: 999728126}
   mouseControlledLight: {fileID: 406127727}

@@ -3933,23 +3933,23 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2711297064329705748, guid: db29e29058758894a9fbc7be31ebc08e, type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 2711297064329705748, guid: db29e29058758894a9fbc7be31ebc08e, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 2711297064329705748, guid: db29e29058758894a9fbc7be31ebc08e, type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 2711297064329705748, guid: db29e29058758894a9fbc7be31ebc08e, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 11.7958
+      value: 18
       objectReference: {fileID: 0}
     - target: {fileID: 2711297064329705748, guid: db29e29058758894a9fbc7be31ebc08e, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -11.78
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2711297064329705748, guid: db29e29058758894a9fbc7be31ebc08e, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -3966,6 +3966,10 @@ PrefabInstance:
     - target: {fileID: 7322165077478019608, guid: db29e29058758894a9fbc7be31ebc08e, type: 3}
       propertyPath: m_Name
       value: Fade
+      objectReference: {fileID: 0}
+    - target: {fileID: 7322165077478019608, guid: db29e29058758894a9fbc7be31ebc08e, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
