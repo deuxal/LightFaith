@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using UnityEngine.Rendering.Universal;
 
 public class Projectile : MonoBehaviour
 {
@@ -19,6 +20,10 @@ public class Projectile : MonoBehaviour
     public int ammoLimit = -1; // -1 indicates unlimited ammo
     public int ammoCount = 0;
 
+    public Light2D muzzleFlashLight;
+    public AudioClip[] shootingSounds;
+    public AudioSource audioSource;
+
     private Quaternion lastQuaterion;
 
     public void AddAmmoLimit(int limit)
@@ -26,6 +31,31 @@ public class Projectile : MonoBehaviour
         ammoLimit = limit;
         ammoCount = limit;
         UpdateBulletCountUI();
+    }
+    public void ShowMuzzleLight()
+    {
+        if (muzzleFlashLight != null)
+        {
+            muzzleFlashLight.gameObject.SetActive(true);
+            StartCoroutine(DisableMuzzleLight());
+        }
+    }
+    private IEnumerator DisableMuzzleLight()
+    {
+        yield return new WaitForSeconds(0.1f); // Adjust the duration of the light as needed
+        if (muzzleFlashLight != null)
+        {
+            muzzleFlashLight.gameObject.SetActive(false);
+        }
+    }
+    public void PlayRandomShootingSound()
+    {
+        if (shootingSounds.Length > 0 && audioSource != null)
+        {
+            int randomSoundIndex = Random.Range(0, shootingSounds.Length);
+            audioSource.clip = shootingSounds[randomSoundIndex];
+            audioSource.Play();
+        }
     }
     public void ResetAmmoCount()
     {
@@ -81,6 +111,10 @@ public class Projectile : MonoBehaviour
 
         // Add screen shake here
         StartCoroutine(ScreenShake(0.2f, 0.1f));
+
+        // Add muzzle light and play shooting sound
+        ShowMuzzleLight();
+        PlayRandomShootingSound();
     }
 
     private Vector3 GetMouseWorldPosition()
