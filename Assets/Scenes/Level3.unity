@@ -6015,8 +6015,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   InventoryUI: {fileID: 486691298}
   HPUI: {fileID: 669128429}
-  KEY1UI: {fileID: 0}
-  KEY2UI: {fileID: 0}
   BATTERYUI: {fileID: 454837139}
   BULLETUI: {fileID: 1779407356}
   mouseControlledLight: {fileID: 1157989482}
@@ -9855,7 +9853,7 @@ Animator:
   m_GameObject: {fileID: 1915978405}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: bd3a3ae9edc9a60478369bab8bb8be02, type: 2}
+  m_Controller: {fileID: 9100000, guid: a9c06db31c7cd414786b8f66c8278649, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
