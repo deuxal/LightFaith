@@ -1,48 +1,45 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-public class StepSoundManager : MonoBehaviour
+[RequireComponent(typeof(AudioSource))]
+public class StepSound : MonoBehaviour
 {
-    // Step sound variables
-    public AudioSource stepSoundSource1;
-    public AudioSource stepSoundSource2;
+    public float stepInterval = 0.5f; // Adjust this value to control the step sound frequency
+    public float walkThreshold = 0.1f; // Adjust this value to control the walking threshold
+
+    private AudioSource audioSource;
     private bool isWalking = false;
-    private float stepSoundSpeedMultiplier = 1f; // Adjust this value to control the step sound speed
+    private float stepTimer = 0f;
 
     private void Start()
     {
-        // Get the AudioSource components
-        stepSoundSource1 = gameObject.AddComponent<AudioSource>();
-        stepSoundSource2 = gameObject.AddComponent<AudioSource>();
-
-        // Set loop and volume properties for step sounds
-        stepSoundSource1.loop = true;
-        stepSoundSource1.volume = 0.5f;
-        stepSoundSource2.loop = true;
-        stepSoundSource2.volume = 0.5f;
+        audioSource = GetComponent<AudioSource>();
     }
 
-    public void PlayStepSounds(float currentSpeed)
+    private void Update()
     {
-        // Update step sound pitch based on player's speed
-        float pitchMultiplier = currentSpeed * stepSoundSpeedMultiplier;
-        stepSoundSource1.pitch = pitchMultiplier;
-        stepSoundSource2.pitch = pitchMultiplier;
+        // Check if the character is walking
+        isWalking = Mathf.Abs(Input.GetAxisRaw("Horizontal")) > walkThreshold;
 
-        // Play or stop step sounds based on the walking state
-        if (!isWalking)
+        // Play step sound at regular intervals when walking
+        if (isWalking)
         {
-            isWalking = true;
-            stepSoundSource1.Play();
-            stepSoundSource2.Play();
+            stepTimer += Time.deltaTime;
+            if (stepTimer >= stepInterval)
+            {
+                stepTimer = 0f;
+                PlayStepSound();
+            }
         }
     }
 
-    public void StopStepSounds()
+    private void PlayStepSound()
     {
-        isWalking = false;
-        stepSoundSource1.Stop();
-        stepSoundSource2.Stop();
+        // Check if there's a valid AudioSource component and it has an assigned AudioClip
+        if (audioSource != null && audioSource.clip != null)
+        {
+            // Play the step sound through the AudioSource
+            audioSource.PlayOneShot(audioSource.clip);
+        }
     }
 }
+

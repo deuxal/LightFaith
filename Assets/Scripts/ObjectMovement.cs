@@ -15,6 +15,7 @@ public class ObjectMovement : MonoBehaviour
     private bool isClimbing = false;
     private bool isInitialized = false;
 
+
     private float currentSpeed;
     private bool isPlayerStopped = false;
     private float sprintTimer;
