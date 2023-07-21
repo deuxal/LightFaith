@@ -3,6 +3,7 @@ using UnityEngine.UI;
 
 public class ObjectMovement : MonoBehaviour
 {
+
     public HealthSystemAttribute hsa;
     public Collider2D myCollider;
     public LedgeClimb lc;
@@ -22,6 +23,7 @@ public class ObjectMovement : MonoBehaviour
     private bool isCooldown;
     private SpriteRenderer spriteRenderer;
 
+
     /// <summary>
     [SerializeField] private float sprintTime = 10;
     private float currentSprintTime = 0;
@@ -29,28 +31,13 @@ public class ObjectMovement : MonoBehaviour
     [SerializeField] private float sprintRecoveryWalk = 1;
     [SerializeField] private Image sprintSlider;
 
-    // Step sound variables
-    public AudioSource stepSoundSource1;
-    public AudioSource stepSoundSource2;
-    private float stepSoundSpeedMultiplier = 1f; // Adjust this value to control the step sound speed
-
+    /// </summary>
     private void Start()
     {
         currentSprintTime = sprintTime;
         currentSpeed = normalSpeed;
         sprintTimer = sprintDuration;
         spriteRenderer = GetComponent<SpriteRenderer>();
-
-        // Get the AudioSource components
-        stepSoundSource1 = gameObject.AddComponent<AudioSource>();
-        stepSoundSource2 = gameObject.AddComponent<AudioSource>();
-
-        // Set loop and volume properties for step sounds
-        stepSoundSource1.loop = true;
-        stepSoundSource1.volume = 0.5f;
-        stepSoundSource2.loop = true;
-        stepSoundSource2.volume = 0.5f;
-
         Slider();
     }
 
@@ -135,12 +122,6 @@ public class ObjectMovement : MonoBehaviour
             // Set the walking animation parameter to false
             animator.SetBool("IsWalking", false);
         }
-
-        // Update step sound pitch based on player's speed
-        float pitchMultiplier = currentSpeed * stepSoundSpeedMultiplier;
-        stepSoundSource1.pitch = pitchMultiplier;
-        stepSoundSource2.pitch = pitchMultiplier;
-
         Slider();
 
         if (!isInitialized) // Check if the script is initialized
