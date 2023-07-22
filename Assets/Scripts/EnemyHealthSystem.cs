@@ -11,10 +11,20 @@ public class EnemyHealthSystem : MonoBehaviour
 
     public GameObject hitParticlesPrefab; // Prefab for hit particles
     public GameObject deathParticlesPrefab; // Prefab for death particles
+    public AudioClip hitSoundClip; // Audio clip for hit sound
+    public AudioClip deathSoundClip; // Audio clip for death sound
+
+    private AudioSource audioSource;
 
     private void Start()
     {
         originalHealth = health;
+
+        // Add an AudioSource component if not already present
+        if (!TryGetComponent(out audioSource))
+        {
+            audioSource = gameObject.AddComponent<AudioSource>();
+        }
     }
 
     public int GetCurrentHealth()
@@ -40,6 +50,7 @@ public class EnemyHealthSystem : MonoBehaviour
         else
         {
             PlayHitParticles();
+            PlayHitSound(); // Play the hit sound whenever the enemy gets hit
         }
     }
 
@@ -51,6 +62,7 @@ public class EnemyHealthSystem : MonoBehaviour
     private void Die()
     {
         PlayDeathParticles();
+        PlayDeathSound(); // Play the death sound when the enemy dies
         // Perform death actions here, such as playing death animation, disabling movement, etc.
         Destroy(gameObject);
     }
@@ -70,6 +82,22 @@ public class EnemyHealthSystem : MonoBehaviour
         {
             GameObject particles = Instantiate(deathParticlesPrefab, transform.position, Quaternion.identity);
             Destroy(particles, 2f); // Destroy particles after 2 seconds
+        }
+    }
+
+    public void PlayHitSound()
+    {
+        if (audioSource != null && hitSoundClip != null)
+        {
+            audioSource.PlayOneShot(hitSoundClip);
+        }
+    }
+
+    public void PlayDeathSound()
+    {
+        if (audioSource != null && deathSoundClip != null)
+        {
+            audioSource.PlayOneShot(deathSoundClip);
         }
     }
 }
