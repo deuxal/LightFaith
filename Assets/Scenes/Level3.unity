@@ -1022,6 +1022,14 @@ PrefabInstance:
       propertyPath: target
       value: 
       objectReference: {fileID: 1915978403}
+    - target: {fileID: 4053263521275801690, guid: 7c076e84ff43c7447b9220e798a18eec, type: 3}
+      propertyPath: hitSoundClip
+      value: 
+      objectReference: {fileID: 8300000, guid: 30f7690a2ff68a14d8273a648a405f0c, type: 3}
+    - target: {fileID: 4053263521275801690, guid: 7c076e84ff43c7447b9220e798a18eec, type: 3}
+      propertyPath: deathSoundClip
+      value: 
+      objectReference: {fileID: 8300000, guid: 30f7690a2ff68a14d8273a648a405f0c, type: 3}
     - target: {fileID: 5316789660782017449, guid: 7c076e84ff43c7447b9220e798a18eec, type: 3}
       propertyPath: m_Name
       value: Volker (2)
@@ -2755,6 +2763,14 @@ PrefabInstance:
       propertyPath: jumpForce
       value: 6.68
       objectReference: {fileID: 0}
+    - target: {fileID: 2491207349894013329, guid: 5f2fecc4e53b11e458a399c932a6ee69, type: 3}
+      propertyPath: hitSoundClip
+      value: 
+      objectReference: {fileID: 8300000, guid: 30f7690a2ff68a14d8273a648a405f0c, type: 3}
+    - target: {fileID: 2491207349894013329, guid: 5f2fecc4e53b11e458a399c932a6ee69, type: 3}
+      propertyPath: deathSoundClip
+      value: 
+      objectReference: {fileID: 8300000, guid: 30f7690a2ff68a14d8273a648a405f0c, type: 3}
     - target: {fileID: 3392742876590110876, guid: 5f2fecc4e53b11e458a399c932a6ee69, type: 3}
       propertyPath: m_RootOrder
       value: 16
@@ -4378,6 +4394,14 @@ PrefabInstance:
       propertyPath: target
       value: 
       objectReference: {fileID: 1915978403}
+    - target: {fileID: 8187742960921832496, guid: 361abd703288a3d488393bcd255ab4ea, type: 3}
+      propertyPath: hitSoundClip
+      value: 
+      objectReference: {fileID: 8300000, guid: 30f7690a2ff68a14d8273a648a405f0c, type: 3}
+    - target: {fileID: 8187742960921832496, guid: 361abd703288a3d488393bcd255ab4ea, type: 3}
+      propertyPath: deathSoundClip
+      value: 
+      objectReference: {fileID: 8300000, guid: 30f7690a2ff68a14d8273a648a405f0c, type: 3}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -4475,6 +4499,14 @@ PrefabInstance:
       propertyPath: target
       value: 
       objectReference: {fileID: 1915978403}
+    - target: {fileID: 4053263521275801690, guid: 7c076e84ff43c7447b9220e798a18eec, type: 3}
+      propertyPath: hitSoundClip
+      value: 
+      objectReference: {fileID: 8300000, guid: 30f7690a2ff68a14d8273a648a405f0c, type: 3}
+    - target: {fileID: 4053263521275801690, guid: 7c076e84ff43c7447b9220e798a18eec, type: 3}
+      propertyPath: deathSoundClip
+      value: 
+      objectReference: {fileID: 8300000, guid: 30f7690a2ff68a14d8273a648a405f0c, type: 3}
     - target: {fileID: 5316789660782017449, guid: 7c076e84ff43c7447b9220e798a18eec, type: 3}
       propertyPath: m_Name
       value: Volker (1)
@@ -6973,7 +7005,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 30686134964107985, guid: 986e06a52cb66c345811d0e44c0eb355, type: 3}
       propertyPath: m_SortingOrder
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 506599763361489598, guid: 986e06a52cb66c345811d0e44c0eb355, type: 3}
       propertyPath: m_Name
@@ -7031,6 +7063,10 @@ PrefabInstance:
       propertyPath: drawerUI
       value: 
       objectReference: {fileID: 1951110642}
+    - target: {fileID: 7894535685362097315, guid: 986e06a52cb66c345811d0e44c0eb355, type: 3}
+      propertyPath: itemsToGenerate
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 7894535685362097315, guid: 986e06a52cb66c345811d0e44c0eb355, type: 3}
       propertyPath: proximityDistance
       value: 1.62
@@ -7716,7 +7752,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 30686134964107985, guid: 986e06a52cb66c345811d0e44c0eb355, type: 3}
       propertyPath: m_SortingOrder
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 506599763361489598, guid: 986e06a52cb66c345811d0e44c0eb355, type: 3}
       propertyPath: m_Name
@@ -8455,6 +8491,14 @@ PrefabInstance:
       propertyPath: target
       value: 
       objectReference: {fileID: 1915978403}
+    - target: {fileID: 4053263521275801690, guid: 7c076e84ff43c7447b9220e798a18eec, type: 3}
+      propertyPath: hitSoundClip
+      value: 
+      objectReference: {fileID: 8300000, guid: 30f7690a2ff68a14d8273a648a405f0c, type: 3}
+    - target: {fileID: 4053263521275801690, guid: 7c076e84ff43c7447b9220e798a18eec, type: 3}
+      propertyPath: deathSoundClip
+      value: 
+      objectReference: {fileID: 8300000, guid: 30f7690a2ff68a14d8273a648a405f0c, type: 3}
     - target: {fileID: 5316789660782017449, guid: 7c076e84ff43c7447b9220e798a18eec, type: 3}
       propertyPath: m_Name
       value: Volker
@@ -8700,6 +8744,14 @@ PrefabInstance:
       propertyPath: target
       value: 
       objectReference: {fileID: 1915978403}
+    - target: {fileID: 8187742960921832496, guid: 361abd703288a3d488393bcd255ab4ea, type: 3}
+      propertyPath: hitSoundClip
+      value: 
+      objectReference: {fileID: 8300000, guid: 30f7690a2ff68a14d8273a648a405f0c, type: 3}
+    - target: {fileID: 8187742960921832496, guid: 361abd703288a3d488393bcd255ab4ea, type: 3}
+      propertyPath: deathSoundClip
+      value: 
+      objectReference: {fileID: 8300000, guid: 30f7690a2ff68a14d8273a648a405f0c, type: 3}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -10652,6 +10704,14 @@ PrefabInstance:
       propertyPath: target
       value: 
       objectReference: {fileID: 1915978403}
+    - target: {fileID: 4053263521275801690, guid: 7c076e84ff43c7447b9220e798a18eec, type: 3}
+      propertyPath: hitSoundClip
+      value: 
+      objectReference: {fileID: 8300000, guid: 30f7690a2ff68a14d8273a648a405f0c, type: 3}
+    - target: {fileID: 4053263521275801690, guid: 7c076e84ff43c7447b9220e798a18eec, type: 3}
+      propertyPath: deathSoundClip
+      value: 
+      objectReference: {fileID: 8300000, guid: 30f7690a2ff68a14d8273a648a405f0c, type: 3}
     - target: {fileID: 5316789660782017449, guid: 7c076e84ff43c7447b9220e798a18eec, type: 3}
       propertyPath: m_Name
       value: Volker (3)

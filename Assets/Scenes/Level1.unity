@@ -1068,6 +1068,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8187742960921832496, guid: 361abd703288a3d488393bcd255ab4ea, type: 3}
+      propertyPath: hitSoundClip
+      value: 
+      objectReference: {fileID: 8300000, guid: 30f7690a2ff68a14d8273a648a405f0c, type: 3}
+    - target: {fileID: 8187742960921832496, guid: 361abd703288a3d488393bcd255ab4ea, type: 3}
+      propertyPath: deathSoundClip
+      value: 
+      objectReference: {fileID: 8300000, guid: 30f7690a2ff68a14d8273a648a405f0c, type: 3}
     m_RemovedComponents:
     - {fileID: 2122080463545093311, guid: 361abd703288a3d488393bcd255ab4ea, type: 3}
     m_RemovedGameObjects: []
@@ -1614,6 +1622,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8187742960921832496, guid: 361abd703288a3d488393bcd255ab4ea, type: 3}
+      propertyPath: hitSoundClip
+      value: 
+      objectReference: {fileID: 8300000, guid: 30f7690a2ff68a14d8273a648a405f0c, type: 3}
+    - target: {fileID: 8187742960921832496, guid: 361abd703288a3d488393bcd255ab4ea, type: 3}
+      propertyPath: deathSoundClip
+      value: 
+      objectReference: {fileID: 8300000, guid: 30f7690a2ff68a14d8273a648a405f0c, type: 3}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -11215,6 +11231,14 @@ PrefabInstance:
       propertyPath: target
       value: 
       objectReference: {fileID: 936208672}
+    - target: {fileID: 4053263521275801690, guid: 7c076e84ff43c7447b9220e798a18eec, type: 3}
+      propertyPath: hitSoundClip
+      value: 
+      objectReference: {fileID: 8300000, guid: 30f7690a2ff68a14d8273a648a405f0c, type: 3}
+    - target: {fileID: 4053263521275801690, guid: 7c076e84ff43c7447b9220e798a18eec, type: 3}
+      propertyPath: deathSoundClip
+      value: 
+      objectReference: {fileID: 8300000, guid: 30f7690a2ff68a14d8273a648a405f0c, type: 3}
     - target: {fileID: 5316789660782017449, guid: 7c076e84ff43c7447b9220e798a18eec, type: 3}
       propertyPath: m_Name
       value: Volker (2)
@@ -11705,6 +11729,14 @@ PrefabInstance:
       propertyPath: target
       value: 
       objectReference: {fileID: 936208672}
+    - target: {fileID: 4053263521275801690, guid: 7c076e84ff43c7447b9220e798a18eec, type: 3}
+      propertyPath: hitSoundClip
+      value: 
+      objectReference: {fileID: 8300000, guid: 30f7690a2ff68a14d8273a648a405f0c, type: 3}
+    - target: {fileID: 4053263521275801690, guid: 7c076e84ff43c7447b9220e798a18eec, type: 3}
+      propertyPath: deathSoundClip
+      value: 
+      objectReference: {fileID: 8300000, guid: 30f7690a2ff68a14d8273a648a405f0c, type: 3}
     - target: {fileID: 5316789660782017449, guid: 7c076e84ff43c7447b9220e798a18eec, type: 3}
       propertyPath: m_Name
       value: Volker (1)
@@ -11835,6 +11867,14 @@ PrefabInstance:
       propertyPath: target
       value: 
       objectReference: {fileID: 936208672}
+    - target: {fileID: 4053263521275801690, guid: 7c076e84ff43c7447b9220e798a18eec, type: 3}
+      propertyPath: hitSoundClip
+      value: 
+      objectReference: {fileID: 8300000, guid: 30f7690a2ff68a14d8273a648a405f0c, type: 3}
+    - target: {fileID: 4053263521275801690, guid: 7c076e84ff43c7447b9220e798a18eec, type: 3}
+      propertyPath: deathSoundClip
+      value: 
+      objectReference: {fileID: 8300000, guid: 30f7690a2ff68a14d8273a648a405f0c, type: 3}
     - target: {fileID: 5316789660782017449, guid: 7c076e84ff43c7447b9220e798a18eec, type: 3}
       propertyPath: m_Name
       value: Volker
@@ -13796,6 +13836,14 @@ PrefabInstance:
       propertyPath: m_LinearDrag
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8187742960921832496, guid: 361abd703288a3d488393bcd255ab4ea, type: 3}
+      propertyPath: hitSoundClip
+      value: 
+      objectReference: {fileID: 8300000, guid: 30f7690a2ff68a14d8273a648a405f0c, type: 3}
+    - target: {fileID: 8187742960921832496, guid: 361abd703288a3d488393bcd255ab4ea, type: 3}
+      propertyPath: deathSoundClip
+      value: 
+      objectReference: {fileID: 8300000, guid: 30f7690a2ff68a14d8273a648a405f0c, type: 3}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
