@@ -166,5 +166,8 @@ public class ObjectMovement : MonoBehaviour
     {
         isPlayerStopped = false;
     }
-
+    public void SetWalking(bool isWalking)
+    {
+        animator.SetBool("IsWalking", isWalking);
+    }
 }

@@ -38,6 +38,10 @@ public class CutsceneManager : MonoBehaviour
     {
         // The cutscene has finished playing, enable the UI Canvas
         EnableUIAfterCutscene();
+
+        // Reset player walking state to idle
+        playerController.SetWalking(false);
+
         // Resume player movement after the cutscene
         playerController.ResumePlayer();
     }
