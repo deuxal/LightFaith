@@ -13,17 +13,27 @@ public class EnemyHealthSystem : MonoBehaviour
     public GameObject deathParticlesPrefab; // Prefab for death particles
     public AudioClip hitSoundClip; // Audio clip for hit sound
     public AudioClip deathSoundClip; // Audio clip for death sound
+    private AudioSource deathAudioSource;
 
-    private AudioSource audioSource;
 
     private void Start()
     {
         originalHealth = health;
 
-        // Add an AudioSource component if not already present
-        if (!TryGetComponent(out audioSource))
+        // Find or create the AudioHolder GameObject and attach the AudioSource
+        GameObject audioHolderObj = GameObject.Find("AudioHolder");
+        if (audioHolderObj == null)
         {
-            audioSource = gameObject.AddComponent<AudioSource>();
+            audioHolderObj = new GameObject("AudioHolder");
+            deathAudioSource = audioHolderObj.AddComponent<AudioSource>();
+        }
+        else
+        {
+            deathAudioSource = audioHolderObj.GetComponent<AudioSource>();
+            if (deathAudioSource == null)
+            {
+                deathAudioSource = audioHolderObj.AddComponent<AudioSource>();
+            }
         }
     }
 
@@ -87,17 +97,17 @@ public class EnemyHealthSystem : MonoBehaviour
 
     public void PlayHitSound()
     {
-        if (audioSource != null && hitSoundClip != null)
+        if (deathAudioSource != null && hitSoundClip != null) // Change 'audioSource' to 'deathAudioSource'
         {
-            audioSource.PlayOneShot(hitSoundClip);
+            deathAudioSource.PlayOneShot(hitSoundClip); // Change 'audioSource' to 'deathAudioSource'
         }
     }
 
     public void PlayDeathSound()
     {
-        if (audioSource != null && deathSoundClip != null)
+        if (deathAudioSource != null && deathSoundClip != null)
         {
-            audioSource.PlayOneShot(deathSoundClip);
+            deathAudioSource.PlayOneShot(deathSoundClip);
         }
     }
 }
