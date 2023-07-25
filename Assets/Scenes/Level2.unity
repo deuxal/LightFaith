@@ -10947,6 +10947,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Mouther
       objectReference: {fileID: 0}
+    - target: {fileID: 4378112826163994582, guid: 5f2fecc4e53b11e458a399c932a6ee69, type: 3}
+      propertyPath: m_TagString
+      value: Enemy
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
