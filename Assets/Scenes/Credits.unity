@@ -123,6 +123,116 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1001 &223323202
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 1874449099}
+    m_Modifications:
+    - target: {fileID: 1946925415466376125, guid: db29e29058758894a9fbc7be31ebc08e, type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: 7969e83d2ce6ac940a200bb37d479961, type: 2}
+    - target: {fileID: 2711297064329705748, guid: db29e29058758894a9fbc7be31ebc08e, type: 3}
+      propertyPath: m_Pivot.x
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 2711297064329705748, guid: db29e29058758894a9fbc7be31ebc08e, type: 3}
+      propertyPath: m_Pivot.y
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 2711297064329705748, guid: db29e29058758894a9fbc7be31ebc08e, type: 3}
+      propertyPath: m_RootOrder
+      value: -1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2711297064329705748, guid: db29e29058758894a9fbc7be31ebc08e, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 2711297064329705748, guid: db29e29058758894a9fbc7be31ebc08e, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 2711297064329705748, guid: db29e29058758894a9fbc7be31ebc08e, type: 3}
+      propertyPath: m_AnchorMin.x
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 2711297064329705748, guid: db29e29058758894a9fbc7be31ebc08e, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 2711297064329705748, guid: db29e29058758894a9fbc7be31ebc08e, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 1996.6465
+      objectReference: {fileID: 0}
+    - target: {fileID: 2711297064329705748, guid: db29e29058758894a9fbc7be31ebc08e, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 1103.6
+      objectReference: {fileID: 0}
+    - target: {fileID: 2711297064329705748, guid: db29e29058758894a9fbc7be31ebc08e, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2711297064329705748, guid: db29e29058758894a9fbc7be31ebc08e, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2711297064329705748, guid: db29e29058758894a9fbc7be31ebc08e, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2711297064329705748, guid: db29e29058758894a9fbc7be31ebc08e, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2711297064329705748, guid: db29e29058758894a9fbc7be31ebc08e, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2711297064329705748, guid: db29e29058758894a9fbc7be31ebc08e, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2711297064329705748, guid: db29e29058758894a9fbc7be31ebc08e, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2711297064329705748, guid: db29e29058758894a9fbc7be31ebc08e, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 11.7958
+      objectReference: {fileID: 0}
+    - target: {fileID: 2711297064329705748, guid: db29e29058758894a9fbc7be31ebc08e, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -11.78
+      objectReference: {fileID: 0}
+    - target: {fileID: 2711297064329705748, guid: db29e29058758894a9fbc7be31ebc08e, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2711297064329705748, guid: db29e29058758894a9fbc7be31ebc08e, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2711297064329705748, guid: db29e29058758894a9fbc7be31ebc08e, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7322165077478019608, guid: db29e29058758894a9fbc7be31ebc08e, type: 3}
+      propertyPath: m_Name
+      value: Fade
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: db29e29058758894a9fbc7be31ebc08e, type: 3}
+--- !u!224 &223323203 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 2711297064329705748, guid: db29e29058758894a9fbc7be31ebc08e, type: 3}
+  m_PrefabInstance: {fileID: 223323202}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0
@@ -504,7 +614,7 @@ RectTransform:
   m_GameObject: {fileID: 837713861}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.705787, y: 0.705787, z: 0.705787}
+  m_LocalScale: {x: 1.279733, y: 1.279733, z: 1.279733}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1874449099}
@@ -512,7 +622,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -416.1, y: 158.2}
+  m_AnchoredPosition: {x: -604.22, y: 309.43}
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &837713863
@@ -536,8 +646,9 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_text: "coding: Clemente riedemann * Felipe Dumont * ChatGPT\n       \n      Sprites:
-    Clemente Riedemann\n          \n           Rain Pefab: Jeff Johnson (Digital
-    Ruby)\n     \n              Font: Gurkan Sengun\n           \n                
+    Clemente Riedemann\n          \n           Rain Prefab: Jeff Johnson (Digital
+    Ruby)\n     \n              Font: Gurkan Sengun\n                      \n               
+    Sounds:  Scott Cawthon * Valve * Dennaton Games\n           \n                 
     Animations: Clemente Riedemann\n                \n                      Game
     created by clemente riedemann\n                            \n\n                           
     thank you for playing!\n\n\n\n\n                            "
@@ -645,7 +756,7 @@ RectTransform:
   m_GameObject: {fileID: 999161264}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1.8132, y: 1.8132, z: 1.8132}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 663066106}
@@ -654,7 +765,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -407, y: -239}
+  m_AnchoredPosition: {x: -741, y: -452}
   m_SizeDelta: {x: 160, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &999161266
@@ -778,7 +889,7 @@ RectTransform:
   m_GameObject: {fileID: 1262668623}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1.0386105, y: 1.0386105, z: 1.0386105}
+  m_LocalScale: {x: 1.8832085, y: 1.8832085, z: 1.8832085}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1874449099}
@@ -786,7 +897,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 29.1, y: 225.8}
+  m_AnchoredPosition: {x: 52, y: 432}
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1262668625
@@ -1096,6 +1207,7 @@ RectTransform:
   - {fileID: 1262668624}
   - {fileID: 837713862}
   - {fileID: 999161265}
+  - {fileID: 223323203}
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

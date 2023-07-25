@@ -10,6 +10,9 @@ public class MouseControlledLight : MonoBehaviour
     public KeyCode toggleKey = KeyCode.E;
     public KeyCode modeChangeKey = KeyCode.Space;
     public float batteryDuration = 10f; // Duration of the battery in seconds
+    public AudioClip flashlightActivationSoundClip; // Audio clip for flashlight activation
+    public AudioClip flashlightDeactivationSoundClip; // Audio clip for flashlight deactivation
+
 
     public AudioClip flashlightSoundClip; // Audio clip for flashlight activation
 
@@ -17,6 +20,8 @@ public class MouseControlledLight : MonoBehaviour
     private bool isProjectileMode = false;
     private float batteryTimer;
     private float originalBatteryDuration;
+    private bool prevLightState = true; // Previous state of the flashlight (used to detect changes)
+
 
     private AudioSource audioSource; // Reference to the AudioSource component
     private ObjectMovement playerMovementController; // Reference to the ObjectMovement script
@@ -47,12 +52,24 @@ public class MouseControlledLight : MonoBehaviour
             isLightOn = !isLightOn;
             globalLight2D.enabled = isLightOn;
 
-            // Play the flashlight activation sound when the flashlight is turned on
             if (isLightOn && flashlightSoundClip != null)
             {
                 audioSource.PlayOneShot(flashlightSoundClip);
             }
         }
+
+        // Check if the light state has changed (on to off or off to on)
+        if (prevLightState != isLightOn)
+        {
+            prevLightState = isLightOn;
+
+            // Play the flashlight deactivation sound when the flashlight is turned off
+            if (!isLightOn && flashlightDeactivationSoundClip != null)
+            {
+                audioSource.PlayOneShot(flashlightDeactivationSoundClip);
+            }
+        }
+
 
         // Change mode when the specified key is held down
         if (Input.GetKey(modeChangeKey))
