@@ -3358,9 +3358,17 @@ PrefabInstance:
       value: 180
       objectReference: {fileID: 0}
     - target: {fileID: 3892729185550425491, guid: fd11be24ef344cb4aa70324a835db060, type: 3}
+      propertyPath: flashlightSoundClip
+      value: 
+      objectReference: {fileID: 8300000, guid: a91a4fe3975ce854eb1ca793f61d4599, type: 3}
+    - target: {fileID: 3892729185550425491, guid: fd11be24ef344cb4aa70324a835db060, type: 3}
       propertyPath: originalBatteryDuration
       value: 180
       objectReference: {fileID: 0}
+    - target: {fileID: 3892729185550425491, guid: fd11be24ef344cb4aa70324a835db060, type: 3}
+      propertyPath: flashlightDeactivationSoundClip
+      value: 
+      objectReference: {fileID: 8300000, guid: a91a4fe3975ce854eb1ca793f61d4599, type: 3}
     - target: {fileID: 4508449851760758074, guid: fd11be24ef344cb4aa70324a835db060, type: 3}
       propertyPath: m_RootOrder
       value: 1
