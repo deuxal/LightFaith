@@ -14,6 +14,9 @@ public class MoutherAI : MonoBehaviour
     public float projectileForce = 10f;
     public float projectileSelfDestructTime = 5f; // Time until the projectile self-destructs
 
+    public float directionChangeInterval = 3f; // Time interval for changing horizontal direction
+    public float directionChangeTimer = 3f; // Timer to track direction change
+
     private bool isJumping = false;
     private bool isShooting = false;
     private bool isCooldownActive = false;
@@ -44,6 +47,14 @@ public class MoutherAI : MonoBehaviour
             if (!isJumping && !isJumpCooldownActive)
             {
                 Jump();
+            }
+
+            // Direction change behavior
+            directionChangeTimer += Time.deltaTime;
+            if (directionChangeTimer >= directionChangeInterval)
+            {
+                ChangeHorizontalDirection();
+                directionChangeTimer = 0f;
             }
         }
     }
@@ -98,5 +109,11 @@ public class MoutherAI : MonoBehaviour
     private void ResetCooldown()
     {
         isCooldownActive = false;
+    }
+
+    private void ChangeHorizontalDirection()
+    {
+        // Toggle the sign of the forwardForce to change the horizontal direction
+        forwardForce = -forwardForce;
     }
 }
