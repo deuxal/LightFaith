@@ -1,12 +1,13 @@
 using UnityEngine;
 using UnityEngine.Playables;
-using UnityEngine.SceneManagement;
 
 public class CutsceneManager : MonoBehaviour
 {
     public PlayableDirector timeline;
     public Canvas uiCanvas;
     public ObjectMovement playerController;
+
+    private bool timelinePlaying = false; // Flag to track if the timeline is currently playing
 
     void Start()
     {
@@ -15,6 +16,12 @@ public class CutsceneManager : MonoBehaviour
 
         // Play the Timeline once the level is loaded
         timeline.Play();
+
+        // Set the timelinePlaying flag to true
+        timelinePlaying = true;
+
+        // Deactivate the ObjectMovement script while the timeline is playing
+        playerController.enabled = false;
     }
 
     public void EnableUIAfterCutscene()
@@ -42,7 +49,24 @@ public class CutsceneManager : MonoBehaviour
         // Reset player walking state to idle
         playerController.SetWalking(false);
 
+        // Activate the ObjectMovement script after the cutscene
+        playerController.enabled = true;
+
         // Resume player movement after the cutscene
         playerController.ResumePlayer();
+
+        // Set the timelinePlaying flag to false
+        timelinePlaying = false;
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+        // Check if the timeline is still playing
+        if (timelinePlaying)
+        {
+            // If the timeline is playing, disable player movement
+            playerController.StopPlayer();
+        }
     }
 }
