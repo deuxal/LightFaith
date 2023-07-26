@@ -223,6 +223,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Fade
       objectReference: {fileID: 0}
+    - target: {fileID: 7322165077478019608, guid: db29e29058758894a9fbc7be31ebc08e, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -622,7 +626,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -604.22, y: 309.43}
+  m_AnchoredPosition: {x: -697, y: 359}
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &837713863
@@ -648,10 +652,10 @@ MonoBehaviour:
   m_text: "coding: Clemente riedemann * Felipe Dumont * ChatGPT\n       \n      Sprites:
     Clemente Riedemann\n          \n           Rain Prefab: Jeff Johnson (Digital
     Ruby)\n     \n              Font: Gurkan Sengun\n                      \n               
-    Sounds:  Scott Cawthon * Valve * Dennaton Games\n           \n                 
-    Animations: Clemente Riedemann\n                \n                      Game
-    created by clemente riedemann\n                            \n\n                           
-    thank you for playing!\n\n\n\n\n                            "
+    Sounds:  Scott Cawthon * Valve * Dennaton Games\n\n                  Menu Music:
+    Intimmidation - Alicks\n           \n                    Animations: Clemente
+    Riedemann\n                \n                      Game created by clemente riedemann\n                           
+    \n\n                            thank you for playing!\n\n\n\n\n                            "
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 131169f8073e5784e8a2053f090590db, type: 2}
   m_sharedMaterial: {fileID: 6813704213927370802, guid: 131169f8073e5784e8a2053f090590db, type: 2}
@@ -897,7 +901,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 52, y: 432}
+  m_AnchoredPosition: {x: 37, y: 454}
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1262668625

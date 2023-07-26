@@ -1,50 +1,71 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
+using System.Collections;
 
-public class PlayerFeedback : MonoBehaviour
+public class TriggerEnd : MonoBehaviour
 {
-    public Animator animator; // Reference to the Animator component
-    public bool isHurt = false; // Indicates if the player is currently hurt
-    public float hitForce = 5f; // The backward force applied to the player when hit
-    public float hitDuration = 0.2f; // The duration in seconds for the hit effect
-    public float hitCooldown = 1f; // The cooldown period in seconds before the player can get hurt again
+    public GameObject player; // Reference to the player GameObject
+    public GameObject rainPrefab; // Reference to the rain prefab GameObject
+    public Animator redFadeAnimator; // Reference to the red fade animator
+    public AudioClip rapidSpriteSoundClip; // Sound clip for rapid sprite event
+    public AudioClip redFadeSoundClip; // Sound clip for red fade event
+    public string creditsSceneName = "CreditsScene"; // Name of the credits scene to load
 
-    private Rigidbody2D rb;
-    private bool isCooldownActive = false;
+    private AudioSource audioSource;
+    private bool triggered = false;
 
-    private void Awake()
+    private void Start()
     {
-        rb = GetComponent<Rigidbody2D>();
+        audioSource = GetComponent<AudioSource>();
     }
 
-    private void OnCollisionEnter2D(Collision2D collision)
+    private void OnTriggerEnter2D(Collider2D other)
     {
-        if (collision.gameObject.CompareTag("Enemy") && !isHurt && !isCooldownActive)
+        // Check if the player has entered the trigger area and the events haven't been triggered yet
+        if (other.gameObject == player && !triggered)
         {
-            // Apply hit effect
-            animator.SetBool("IsHurt", true); // Set the "IsHurt" parameter to true in the Animator
-            rb.AddForce(Vector2.left * hitForce, ForceMode2D.Impulse);
-            isHurt = true;
+            triggered = true;
 
-            // Reset hit effect after a duration
-            Invoke(nameof(ResetHitEffect), hitDuration);
+            // Disable the rain prefab
+            rainPrefab.SetActive(false);
 
-            // Start cooldown period
-            isCooldownActive = true;
-            Invoke(nameof(ResetCooldown), hitCooldown);
+            // Play rapid sprite sound clip
+            if (rapidSpriteSoundClip != null)
+            {
+                audioSource.PlayOneShot(rapidSpriteSoundClip);
+            }
 
-            // Log hit event
-            Debug.Log("Player hit.");
+            // Start the coroutine to handle the animations and scene loading
+            StartCoroutine(TriggerSequence());
         }
     }
 
-    private void ResetHitEffect()
+    private IEnumerator TriggerSequence()
     {
-        animator.SetBool("IsHurt", false); // Set the "IsHurt" parameter to false in the Animator
-        isHurt = false;
-    }
+        // Wait for the sprite animation to finish
+        Animation spriteAnimation = player.GetComponent<Animation>();
+        if (spriteAnimation != null)
+        {
+            yield return new WaitForSeconds(spriteAnimation.clip.length);
+        }
+        else
+        {
+            Debug.LogWarning("Sprite animation component not found on player.");
+        }
 
-    private void ResetCooldown()
-    {
-        isCooldownActive = false;
+        // Trigger the red fade animation
+        redFadeAnimator.SetTrigger("FadeIn");
+
+        // Play red fade sound clip
+        if (redFadeSoundClip != null)
+        {
+            audioSource.PlayOneShot(redFadeSoundClip);
+        }
+
+        // Wait for the red fade animation to finish
+        yield return new WaitForSeconds(redFadeAnimator.GetCurrentAnimatorStateInfo(0).length);
+
+        // Load the credits scene
+        SceneManager.LoadScene(creditsSceneName);
     }
 }
