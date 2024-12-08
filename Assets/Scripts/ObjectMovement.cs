@@ -3,65 +3,73 @@ using UnityEngine.UI;
 
 public class ObjectMovement : MonoBehaviour
 {
-
-    public HealthSystemAttribute hsa;
-    public Collider2D myCollider;
-    public LedgeClimb lc;
+    [Header("General Settings")]
     public float normalSpeed = 2f;
     public float sprintSpeed = 4f;
-    public float sprintDuration = 5f;
     public float sprintCooldown = 2f;
-    public Animator animator;
-    private bool isClimbing = false;
-    private bool isInitialized = false;
 
-
-    private float currentSpeed;
-    private bool isPlayerStopped = false;
-    private float sprintTimer;
-    public bool isSprinting;
-    private float sprintCooldownTimer;
-    private bool isCooldown;
-    private SpriteRenderer spriteRenderer;
-
-
-    /// <summary>
-    [SerializeField] private float sprintTime = 10;
-    private float currentSprintTime = 0;
-    [SerializeField] private float sprintRecoveryStop = 1;
-    [SerializeField] private float sprintRecoveryWalk = 1;
+    [Header("Sprint Settings")]
+    [SerializeField] private float sprintTime = 10f;
+    [SerializeField] private float sprintRecoveryStop = 1f;
+    [SerializeField] private float sprintRecoveryWalk = 1f;
     [SerializeField] private Image sprintSlider;
 
-    /// </summary>
+    [Header("Animator")]
+    public Animator animator;
+
+    private SpriteRenderer spriteRenderer;
+    private float currentSpeed;
+    private float currentSprintTime;
+    private float sprintCooldownTimer;
+    private bool isCooldown = false;
+    private bool isSprinting = false;
+    private bool isPlayerStopped = false;
+
     private void Start()
     {
+        spriteRenderer = GetComponent<SpriteRenderer>();
         currentSprintTime = sprintTime;
         currentSpeed = normalSpeed;
-        sprintTimer = sprintDuration;
-        spriteRenderer = GetComponent<SpriteRenderer>();
-        Slider();
+        UpdateSprintSlider();
     }
 
     private void Update()
     {
-        if (hsa.health <= 0)
+        bool isWalking = Input.GetAxisRaw("Horizontal") != 0;
+        bool isSprintingKeyPressed = Input.GetKey(KeyCode.LeftShift) || Input.GetKey(KeyCode.RightShift);
+
+        // Actualiza la lógica del sprint y obtiene la velocidad actual
+        UpdateSprint(isWalking, isSprintingKeyPressed);
+
+        // Maneja el movimiento del jugador
+        HandleMovement(isWalking);
+    }
+
+    private void FixedUpdate()
+    {
+        // Aplica el movimiento en FixedUpdate
+        float horizontalMovement = Input.GetAxisRaw("Horizontal");
+        if (!isPlayerStopped)
         {
-            animator.SetBool("IsDeath", true);
-            this.enabled = false;
+            transform.position += Vector3.right * horizontalMovement * currentSpeed * Time.fixedDeltaTime;
         }
-        if (!isCooldown && (Input.GetKey(KeyCode.LeftShift) || Input.GetKey(KeyCode.RightShift)) && currentSprintTime > 0)
+    }
+
+    private void UpdateSprint(bool isWalking, bool isSprintingKeyPressed)
+    {
+        if (!isCooldown && isSprintingKeyPressed && currentSprintTime > 0)
         {
+            // Inicia o continúa el sprint
             if (!isSprinting)
             {
                 isSprinting = true;
-                sprintTimer = sprintDuration;
             }
 
             currentSpeed = sprintSpeed;
-            sprintTimer -= Time.deltaTime;
             currentSprintTime -= Time.deltaTime;
 
-            if (sprintTimer <= 0f)
+            // Si el tiempo de sprint se acaba
+            if (currentSprintTime <= 0f)
             {
                 currentSpeed = normalSpeed;
                 sprintCooldownTimer = sprintCooldown;
@@ -74,6 +82,7 @@ public class ObjectMovement : MonoBehaviour
             currentSpeed = normalSpeed;
         }
 
+        // Manejo del enfriamiento del sprint
         if (isCooldown)
         {
             sprintCooldownTimer -= Time.deltaTime;
@@ -84,77 +93,47 @@ public class ObjectMovement : MonoBehaviour
             }
         }
 
+        // Recupera el tiempo de sprint
         if (isPlayerStopped)
         {
             currentSprintTime += Time.deltaTime * sprintRecoveryStop;
-            currentSprintTime = currentSprintTime > sprintTime ? sprintTime : currentSprintTime;
-            currentSpeed = 0;
-            Slider();
-            return;
         }
-
-        if (lc != null)
+        else if (isWalking)
         {
-            lc.MoveToPoint(this.transform, () => { StartLedgeClimb(); }, () => { EndLedgeClimb(); });
+            currentSprintTime += Time.deltaTime * sprintRecoveryWalk;
         }
 
-        // Rotate the sprite based on the input keys
+        currentSprintTime = Mathf.Min(currentSprintTime, sprintTime);
+        UpdateSprintSlider();
+    }
+
+    private void HandleMovement(bool isWalking)
+    {
         float horizontalMovement = Input.GetAxisRaw("Horizontal");
+
+        // Maneja la rotación del sprite y las animaciones
         if (horizontalMovement < 0f)
         {
-            spriteRenderer.transform.rotation = Quaternion.Euler(0f, 180f, 0f); // Rotate 180 degrees in Y-axis
-            currentSprintTime += Time.deltaTime * sprintRecoveryWalk;
-            currentSprintTime = currentSprintTime > sprintTime ? sprintTime : currentSprintTime;
-            // Set the walking animation parameter to true
+            spriteRenderer.transform.rotation = Quaternion.Euler(0f, 180f, 0f);
             animator.SetBool("IsWalking", true);
         }
         else if (horizontalMovement > 0f)
         {
-            spriteRenderer.transform.rotation = Quaternion.Euler(0f, 0f, 0f); // Rotate 0 degrees in Y-axis
-            currentSprintTime += Time.deltaTime * sprintRecoveryWalk;
-            currentSprintTime = currentSprintTime > sprintTime ? sprintTime : currentSprintTime;
-            // Set the walking animation parameter to true
+            spriteRenderer.transform.rotation = Quaternion.Euler(0f, 0f, 0f);
             animator.SetBool("IsWalking", true);
         }
         else
         {
-            currentSprintTime += Time.deltaTime * sprintRecoveryStop;
-            currentSprintTime = currentSprintTime > sprintTime ? sprintTime : currentSprintTime;
-            // Set the walking animation parameter to false
             animator.SetBool("IsWalking", false);
         }
-        Slider();
+    }
 
-        if (!isInitialized) // Check if the script is initialized
+    private void UpdateSprintSlider()
+    {
+        if (sprintSlider != null)
         {
-            isInitialized = true;
-            return; // Skip the animation control on the first frame
+            sprintSlider.fillAmount = currentSprintTime / sprintTime;
         }
-    }
-
-    private void Slider()
-    {
-        sprintSlider.fillAmount = currentSprintTime / sprintTime;
-    }
-
-    private void FixedUpdate()
-    {
-        float horizontalMovement = Input.GetAxisRaw("Horizontal");
-        transform.position += (Vector3.right * horizontalMovement * currentSpeed * Time.fixedDeltaTime);
-    }
-
-    public void StartLedgeClimb()
-    {
-        animator.SetBool("IsClimbing", true);
-        myCollider.enabled = false;
-        isClimbing = false;
-    }
-
-    public void EndLedgeClimb()
-    {
-        animator.SetBool("IsClimbing", false);
-        myCollider.enabled = true;
-        isClimbing = true;
     }
 
     public void StopPlayer()
@@ -165,9 +144,5 @@ public class ObjectMovement : MonoBehaviour
     public void ResumePlayer()
     {
         isPlayerStopped = false;
-    }
-    public void SetWalking(bool isWalking)
-    {
-        animator.SetBool("IsWalking", isWalking);
     }
 }
