@@ -9,7 +9,7 @@ public class ObjectMovement : MonoBehaviour
     public float sprintCooldown = 2f;
 
     [Header("Sprint Settings")]
-    [SerializeField] private float sprintTime = 10f;
+    [SerializeField] private float sprintTime = 10f; // Sprint Duration
     [SerializeField] private float sprintRecoveryStop = 1f;
     [SerializeField] private float sprintRecoveryWalk = 1f;
     [SerializeField] private Image sprintSlider;
@@ -22,8 +22,13 @@ public class ObjectMovement : MonoBehaviour
     private float currentSprintTime;
     private float sprintCooldownTimer;
     private bool isCooldown = false;
-    private bool isSprinting = false;
+    private bool isSprinting = false; // Campo privado
+
     private bool isPlayerStopped = false;
+
+    // Propiedades públicas
+    public float SprintDuration => sprintTime; // Duración del sprint
+    public bool IsSprinting => isSprinting;   // Propiedad de solo lectura para "isSprinting"
 
     private void Start()
     {
@@ -47,7 +52,6 @@ public class ObjectMovement : MonoBehaviour
 
     private void FixedUpdate()
     {
-        // Aplica el movimiento en FixedUpdate
         float horizontalMovement = Input.GetAxisRaw("Horizontal");
         if (!isPlayerStopped)
         {
@@ -59,7 +63,6 @@ public class ObjectMovement : MonoBehaviour
     {
         if (!isCooldown && isSprintingKeyPressed && currentSprintTime > 0)
         {
-            // Inicia o continúa el sprint
             if (!isSprinting)
             {
                 isSprinting = true;
@@ -68,7 +71,6 @@ public class ObjectMovement : MonoBehaviour
             currentSpeed = sprintSpeed;
             currentSprintTime -= Time.deltaTime;
 
-            // Si el tiempo de sprint se acaba
             if (currentSprintTime <= 0f)
             {
                 currentSpeed = normalSpeed;
@@ -82,7 +84,6 @@ public class ObjectMovement : MonoBehaviour
             currentSpeed = normalSpeed;
         }
 
-        // Manejo del enfriamiento del sprint
         if (isCooldown)
         {
             sprintCooldownTimer -= Time.deltaTime;
@@ -93,7 +94,6 @@ public class ObjectMovement : MonoBehaviour
             }
         }
 
-        // Recupera el tiempo de sprint
         if (isPlayerStopped)
         {
             currentSprintTime += Time.deltaTime * sprintRecoveryStop;
@@ -111,7 +111,6 @@ public class ObjectMovement : MonoBehaviour
     {
         float horizontalMovement = Input.GetAxisRaw("Horizontal");
 
-        // Maneja la rotación del sprite y las animaciones
         if (horizontalMovement < 0f)
         {
             spriteRenderer.transform.rotation = Quaternion.Euler(0f, 180f, 0f);
@@ -134,6 +133,11 @@ public class ObjectMovement : MonoBehaviour
         {
             sprintSlider.fillAmount = currentSprintTime / sprintTime;
         }
+    }
+
+    public void SetWalking(bool isWalking)
+    {
+        animator.SetBool("IsWalking", isWalking);
     }
 
     public void StopPlayer()

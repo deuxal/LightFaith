@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -7,20 +5,20 @@ public class StaminaUI : MonoBehaviour
 {
     public Image staminaBarImage;
     public ObjectMovement objectMovement;
-    public float fillSpeed = 2f; // Adjust the speed at which the stamina bar drains and refills
+    public float fillSpeed = 2f;
 
     private float maxStamina;
     private float currentStamina;
 
     private void Start()
     {
-        maxStamina = objectMovement.sprintDuration;
+        maxStamina = objectMovement.SprintDuration; // Usar SprintDuration
         currentStamina = maxStamina;
     }
 
     private void Update()
     {
-        if (objectMovement.isSprinting)
+        if (objectMovement.IsSprinting) // Usar IsSprinting
         {
             currentStamina -= Time.deltaTime * fillSpeed;
             currentStamina = Mathf.Clamp(currentStamina, 0f, maxStamina);
@@ -32,9 +30,6 @@ public class StaminaUI : MonoBehaviour
         }
 
         float fillAmount = currentStamina / maxStamina;
-
-        // Smoothly update the fill amount using Lerp
-        float smoothedFillAmount = Mathf.Lerp(staminaBarImage.fillAmount, fillAmount, Time.deltaTime * fillSpeed);
-        staminaBarImage.fillAmount = smoothedFillAmount;
+        staminaBarImage.fillAmount = Mathf.Lerp(staminaBarImage.fillAmount, fillAmount, Time.deltaTime * fillSpeed);
     }
 }
