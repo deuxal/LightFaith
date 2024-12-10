@@ -23,6 +23,7 @@ public class ObjectMovement : MonoBehaviour
     private float sprintCooldownTimer;
     private bool isCooldown = false;
     private bool isSprinting = false; // Campo privado
+    public LedgeClimb lc { get; set; }
 
     private bool isPlayerStopped = false;
 

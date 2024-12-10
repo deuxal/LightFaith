@@ -56,7 +56,7 @@ public class LedgeClimb: MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if(collision.transform.tag == "Player")
+        if (collision.transform.tag == "Player")
         {
             collision.transform.GetComponent<ObjectMovement>().lc = this;
         }
@@ -69,6 +69,9 @@ public class LedgeClimb: MonoBehaviour
             collision.transform.GetComponent<ObjectMovement>().lc = null;
         }
     }
+
+
+
 }
 
 
